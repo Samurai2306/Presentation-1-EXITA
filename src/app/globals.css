@@ -1,0 +1,3248 @@
+@import "tailwindcss";
+
+:root {
+  /* Light theme = default. */
+  --background: #f6f0e6;
+  --foreground: #0b0b0b;
+
+  /* App semantic surfaces + typography ladder */
+  --app-bg: var(--background);
+  --app-text: #11100f;
+  --app-text-2: rgba(17, 16, 15, 0.8);
+  --app-text-3: rgba(17, 16, 15, 0.62);
+  --app-text-disabled: rgba(17, 16, 15, 0.4);
+  --app-text-inverse: #f8f5ef;
+  --app-link: color-mix(in srgb, var(--accent-indigo) 78%, #1f2937 22%);
+  --app-link-hover: color-mix(in srgb, var(--accent-indigo) 86%, #111827 14%);
+
+  --app-surface-1: #fffdf9;
+  --app-surface-2: color-mix(in srgb, #fffdf9 88%, #f6f0e6 12%);
+  --app-surface-3: color-mix(in srgb, #fffdf9 78%, #f6f0e6 22%);
+  --app-surface-inset: color-mix(in srgb, #f6f0e6 52%, #ece3d6 48%);
+
+  --app-separator-subtle: rgba(0, 0, 0, 0.09);
+  --app-separator: rgba(0, 0, 0, 0.16);
+  --app-separator-strong: rgba(0, 0, 0, 0.26);
+  --app-stroke: rgba(0, 0, 0, 0.22);
+  --app-stroke-strong: rgba(0, 0, 0, 0.32);
+
+  --app-shadow-1: 0 10px 26px rgba(17, 14, 9, 0.1), 0 1px 0 rgba(255, 255, 255, 0.68) inset;
+  --app-shadow-2: 0 16px 42px rgba(14, 12, 9, 0.14), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  --app-shadow-3: 0 26px 66px rgba(12, 10, 8, 0.22), 0 1px 0 rgba(255, 255, 255, 0.74) inset;
+  --app-rim-1: 0 0 0 1px color-mix(in srgb, #ffffff 72%, transparent) inset;
+  --app-rim-2: 0 0 0 1px color-mix(in srgb, #ffffff 84%, transparent) inset;
+
+  --app-glass-bg: color-mix(in srgb, var(--app-surface-2) 72%, transparent);
+  --app-glass-border: color-mix(in srgb, var(--app-stroke) 78%, rgba(255, 255, 255, 0.4) 22%);
+  --app-glass-blur: 10px;
+  --app-scrim: rgba(18, 13, 9, 0.44);
+  --app-scrim-soft: rgba(18, 13, 9, 0.3);
+
+  /* Backward-compatible aliases */
+  --app-fg: var(--app-text);
+  --app-fg-muted: var(--app-text-2);
+  --app-fg-subtle: var(--app-text-3);
+  --app-surface: var(--app-surface-1);
+  --app-surface-strong: var(--app-surface-2);
+  --app-border: var(--app-stroke);
+  --app-border-strong: var(--app-stroke-strong);
+  --app-overlay: rgba(0, 0, 0, 0.30);
+  --app-overlay-soft: rgba(0, 0, 0, 0.22);
+  --app-focus: rgba(0, 0, 0, 0.30);
+  --app-hairline: 0.5px;
+
+  /* RAIS light theme surfaces */
+  --rais-bg: #f6f0e6;
+  --rais-surface-1: var(--app-surface-1);
+  --rais-surface-2: var(--app-surface-2);
+  --rais-separator: var(--app-separator);
+  --rais-stroke: var(--app-stroke);
+  --rais-surface: var(--rais-surface-1);
+  --rais-border: var(--rais-stroke);
+  --rais-surface-solid: var(--rais-surface);
+
+  /* Zone accents (tokens) */
+  --accent-indigo: #4f46e5;
+  --ambient-indigo: rgba(79, 70, 229, 0.35);
+
+  --accent-silver: #e5e7eb;
+  --ambient-silver: rgba(229, 231, 235, 0.18);
+
+  --accent-royal: #1d4ed8;
+  --ambient-royal: rgba(29, 78, 216, 0.28);
+
+  --accent-crimson: #ff3131;
+  --ambient-crimson: rgba(255, 49, 49, 0.22);
+
+  --accent-mint: #34d399;
+  --ambient-mint: rgba(52, 211, 153, 0.18);
+
+  --accent-sun: #fbbf24;
+  --ambient-sun: rgba(251, 191, 36, 0.18);
+
+  --accent-cyan: #22d3ee;
+  --ambient-cyan: rgba(34, 211, 238, 0.18);
+}
+
+html.dark {
+  --background: #14110f;
+  --foreground: #f3eee8;
+
+  --app-bg: var(--background);
+  --app-text: #f3eee8;
+  --app-text-2: rgba(243, 238, 232, 0.86);
+  --app-text-3: rgba(243, 238, 232, 0.66);
+  --app-text-disabled: rgba(243, 238, 232, 0.4);
+  --app-text-inverse: #171311;
+  --app-link: color-mix(in srgb, #a5b4fc 78%, #e2e8f0 22%);
+  --app-link-hover: color-mix(in srgb, #c4b5fd 74%, #f1f5f9 26%);
+
+  --app-surface-1: rgba(36, 30, 27, 0.84);
+  --app-surface-2: rgba(44, 37, 33, 0.88);
+  --app-surface-3: rgba(54, 46, 40, 0.92);
+  --app-surface-inset: rgba(26, 22, 19, 0.74);
+
+  --app-separator-subtle: rgba(255, 245, 230, 0.07);
+  --app-separator: rgba(255, 245, 230, 0.13);
+  --app-separator-strong: rgba(255, 245, 230, 0.2);
+  --app-stroke: rgba(255, 245, 230, 0.16);
+  --app-stroke-strong: rgba(255, 245, 230, 0.24);
+
+  --app-shadow-1: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 245, 230, 0.03) inset;
+  --app-shadow-2: 0 18px 42px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 245, 230, 0.04) inset;
+  --app-shadow-3: 0 28px 68px rgba(0, 0, 0, 0.52), 0 0 0 1px rgba(255, 245, 230, 0.05) inset;
+  --app-rim-1: 0 0 0 1px rgba(255, 245, 230, 0.08) inset;
+  --app-rim-2: 0 0 0 1px rgba(255, 245, 230, 0.12) inset;
+
+  --app-glass-bg: color-mix(in srgb, var(--app-surface-2) 72%, rgba(20, 17, 15, 0.28) 28%);
+  --app-glass-border: rgba(255, 245, 230, 0.14);
+  --app-glass-blur: 12px;
+  --app-scrim: rgba(0, 0, 0, 0.7);
+  --app-scrim-soft: rgba(0, 0, 0, 0.5);
+
+  --app-fg: var(--app-text);
+  --app-fg-muted: var(--app-text-2);
+  --app-fg-subtle: var(--app-text-3);
+  --app-surface: var(--app-surface-1);
+  --app-surface-strong: var(--app-surface-2);
+  --app-border: var(--app-stroke);
+  --app-border-strong: var(--app-stroke-strong);
+  --app-overlay: rgba(0, 0, 0, 0.72);
+  --app-overlay-soft: rgba(0, 0, 0, 0.52);
+  --app-focus: color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 55%, rgba(255, 255, 255, 0.22));
+
+  /* RAIS dark nuance (same system, slightly more "lab" contrast) */
+  --rais-bg: color-mix(in srgb, var(--app-bg) 88%, #1b1613 12%);
+  --rais-surface-1: color-mix(in srgb, var(--app-surface-1) 88%, #201a16 12%);
+  --rais-surface-2: color-mix(in srgb, var(--app-surface-2) 86%, #241d19 14%);
+  --rais-separator: color-mix(in srgb, var(--app-separator) 82%, #ffead1 18%);
+  --rais-stroke: color-mix(in srgb, var(--app-stroke) 86%, #ffe8cc 14%);
+  --rais-surface: var(--rais-surface-1);
+  --rais-border: var(--rais-stroke);
+
+  /* Непрозрачный «эталон» поверх полупрозрачных --app-surface-* (без бинда к rgba). */
+  --rais-surface-solid: #2a231f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-exita-sans);
+  --font-mono: var(--font-exita-mono);
+}
+
+/* Theme is controlled explicitly via `html.dark`. */
+
+body {
+  background: var(--app-bg);
+  color: var(--app-fg);
+  font-family: var(--font-sans);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  font-kerning: normal;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme toggle (ported from SPECIAL/pen-export-pvbvLBN). */
+.theme-toggle {
+  --base-scale: 18px;
+  --toggle-width: 5.625em;
+  --toggle-height: 2.5em;
+  --radius-pill: 100em;
+  --sun-diameter: 2.125em;
+  --sun-offset: calc((var(--toggle-height) - var(--sun-diameter)) / 2);
+
+  /* Strict/pro palette */
+  --bg-toggle-light: color-mix(in srgb, var(--app-surface) 55%, #94a3b8 45%);
+  --bg-toggle-dark: color-mix(in srgb, var(--app-surface) 55%, #0b1220 45%);
+  --color-sun: #eab308;
+  --color-moon: #cbd5e1;
+  --color-crater: #94a3b8;
+  --color-star: rgba(255, 255, 255, 0.92);
+  --color-cloud-front: rgba(255, 255, 255, 0.92);
+  --color-cloud-back: rgba(148, 163, 184, 0.55);
+
+  --shadow-primary: rgba(0, 0, 0, 0.22);
+  --shadow-highlight: rgba(255, 255, 255, 0.70);
+  --halo-color: rgba(255, 255, 255, 0.08);
+
+  font-size: var(--base-scale);
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.theme-toggle__container {
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  background-color: var(--bg-toggle-light);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  position: relative;
+  transition: background-color 260ms ease;
+  overflow: hidden;
+  box-shadow: 0.06em 0.06em 0.125em var(--shadow-highlight);
+  display: block;
+}
+
+.theme-toggle--nav {
+  --base-scale: 14px;
+  --halo-color: rgba(255, 255, 255, 0.06);
+}
+
+.theme-toggle--nav .theme-toggle__sun {
+  box-shadow:
+    0.05em 0.125em 0.125em var(--shadow-primary),
+    0em 0.05em 0.125em var(--shadow-primary),
+    0.05em 0.05em 0.05em 0em rgba(254, 255, 239, 0.36) inset,
+    0em -0.05em 0.05em 0em #a16207 inset,
+    0 0 0 0.5em var(--halo-color),
+    0 0 0 1.0em var(--halo-color);
+}
+
+html.dark .theme-toggle__container {
+  background-color: var(--bg-toggle-dark);
+}
+
+.theme-toggle__container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.48) inset;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+}
+
+.theme-toggle__sun {
+  width: var(--sun-diameter);
+  height: var(--sun-diameter);
+  background-color: var(--color-sun);
+  border-radius: 50%;
+  position: absolute;
+  top: var(--sun-offset);
+  transform: translateX(var(--sun-offset));
+  box-shadow:
+    0.05em 0.125em 0.125em var(--shadow-primary),
+    0em 0.05em 0.125em var(--shadow-primary),
+    0.05em 0.05em 0.05em 0em rgba(254, 255, 239, 0.42) inset,
+    0em -0.05em 0.05em 0em #a16207 inset,
+    0 0 0 0.625em var(--halo-color),
+    0 0 0 1.25em var(--halo-color);
+  transition: transform 260ms ease;
+  overflow: hidden;
+}
+
+html.dark .theme-toggle__container .theme-toggle__sun {
+  transform: translateX(calc(var(--toggle-width) - var(--sun-diameter) - var(--sun-offset)));
+}
+
+.theme-toggle__moon-mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-moon);
+  border-radius: inherit;
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+  box-shadow:
+    0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.42) inset,
+    0em -0.062em 0.062em 0em rgba(0, 0, 0, 0.14) inset;
+}
+
+html.dark .theme-toggle__container .theme-toggle__moon-mask {
+  transform: translateX(0);
+}
+
+.theme-toggle__crater {
+  position: absolute;
+  background-color: var(--color-crater);
+  border-radius: 50%;
+  box-shadow: 0em 0.03em 0.06em rgba(0, 0, 0, 0.18) inset;
+}
+
+.theme-toggle__crater:nth-of-type(1) {
+  top: 0.75em;
+  left: 0.3em;
+  width: 0.75em;
+  height: 0.75em;
+}
+
+.theme-toggle__crater:nth-of-type(2) {
+  top: 0.9em;
+  left: 1.375em;
+  width: 0.375em;
+  height: 0.375em;
+}
+
+.theme-toggle__crater:nth-of-type(3) {
+  top: 0.3em;
+  left: 0.8em;
+  width: 0.25em;
+  height: 0.25em;
+}
+
+.theme-toggle__stars {
+  position: absolute;
+  left: 0.3em;
+  transform: translateY(-2em);
+  transition: transform 260ms ease;
+  width: 4.35em;
+  color: var(--color-star);
+}
+
+html.dark .theme-toggle__container .theme-toggle__stars {
+  transform: translateY(0.5em) scale(1.08);
+}
+
+.theme-toggle__clouds {
+  position: absolute;
+  left: 0.3em;
+  top: 2em;
+  transform: translateY(0);
+  width: 1.25em;
+  height: 1.25em;
+  background-color: var(--color-cloud-front);
+  border-radius: 50%;
+  box-shadow:
+    0.937em 0.312em var(--color-cloud-front),
+    1.437em 0.375em var(--color-cloud-front),
+    2.187em 0 var(--color-cloud-front),
+    2.937em 0.312em var(--color-cloud-front),
+    3.625em -0.062em var(--color-cloud-front),
+    4.5em -0.312em var(--color-cloud-front),
+    4.625em -1.75em 0 0.437em var(--color-cloud-front),
+    -0.312em -0.312em var(--color-cloud-back),
+    0.5em -0.125em var(--color-cloud-back),
+    1.25em -0.062em var(--color-cloud-back),
+    2em -0.312em var(--color-cloud-back),
+    2.625em 0em var(--color-cloud-back),
+    3.375em -0.437em var(--color-cloud-back),
+    4em -0.625em var(--color-cloud-back),
+    4.125em -2.125em 0 0.437em var(--color-cloud-back);
+  transition: transform 260ms ease;
+}
+
+html.dark .theme-toggle__container .theme-toggle__clouds {
+  transform: translateY(3em);
+}
+
+.theme-toggle:focus-visible .theme-toggle__container {
+  outline: 2px solid var(--app-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle__container,
+  .theme-toggle__sun,
+  .theme-toggle__moon-mask,
+  .theme-toggle__stars,
+  .theme-toggle__clouds {
+    transition: none !important;
+  }
+}
+
+/* Keycap / mechanical button system */
+:root {
+  --btn-bg: var(--rais-surface);
+  --btn-fg: var(--app-text-2);
+  --btn-border: color-mix(in srgb, var(--rais-border) 86%, rgba(0, 0, 0, 0.2));
+  --btn-edge: rgba(20, 14, 10, 0.2);
+  --btn-primary: color-mix(in srgb, #121212 80%, var(--accent-indigo) 20%);
+  --btn-primary-dim: color-mix(in srgb, #121212 66%, var(--accent-indigo) 34%);
+  --btn-danger: var(--accent-crimson);
+}
+
+/* Concierge / assistant chat + keycap palette (Light = default). */
+:root {
+  --chat-panel: color-mix(in srgb, var(--app-surface-2) 84%, var(--rais-bg) 16%);
+  --chat-header-bg: color-mix(in srgb, var(--app-surface-3) 56%, var(--app-surface-1) 44%);
+  --chat-footer-bg: color-mix(in srgb, var(--app-surface-3) 48%, var(--app-surface-1) 52%);
+  --chat-inset-bg: color-mix(in srgb, var(--app-surface-inset) 42%, var(--app-surface-1) 58%);
+  --chat-messages-base: color-mix(in srgb, var(--app-surface-1) 76%, #ddd2c3 24%);
+  --chat-scroll-veil:
+    radial-gradient(900px 520px at 50% 0%, color-mix(in srgb, var(--accent-indigo) 10%, transparent), transparent 55%),
+    radial-gradient(860px 520px at 50% 100%, rgba(45, 32, 18, 0.042), transparent 55%);
+  --chat-bubble-in: color-mix(in srgb, var(--app-surface-1) 72%, #ebe2d5 28%);
+  --chat-date-pill: color-mix(in srgb, var(--app-surface-2) 70%, var(--rais-bg) 30%);
+  --keycap-hi: color-mix(in srgb, var(--rais-surface) 55%, #ffffff 45%);
+  --keycap-mid: color-mix(in srgb, var(--rais-surface) 72%, #e9e0d4 28%);
+  --link-chip-bg: color-mix(in srgb, var(--app-surface-2) 64%, var(--rais-bg) 36%);
+  --link-chip-hover: color-mix(in srgb, var(--app-surface-3) 58%, #f5efe6 42%);
+  --mode-tab-active: color-mix(in srgb, var(--rais-surface) 52%, #f0e7dc 48%);
+}
+
+html.dark {
+  --chat-panel: color-mix(in srgb, var(--app-surface-2) 72%, var(--app-bg) 28%);
+  --chat-header-bg: color-mix(in srgb, var(--app-surface-3) 60%, var(--app-surface-2) 40%);
+  --chat-footer-bg: color-mix(in srgb, var(--app-surface-2) 76%, var(--app-bg) 24%);
+  --chat-inset-bg: color-mix(in srgb, var(--app-surface-inset) 58%, var(--app-surface-1) 42%);
+  --chat-messages-base: color-mix(in srgb, var(--app-surface-1) 70%, var(--app-bg) 30%);
+  --chat-scroll-veil:
+    radial-gradient(900px 520px at 50% 0%, color-mix(in srgb, var(--accent-indigo) 18%, transparent), transparent 55%),
+    radial-gradient(860px 520px at 50% 100%, rgba(0, 0, 0, 0.22), transparent 55%);
+  --chat-bubble-in: color-mix(in srgb, var(--app-surface-2) 88%, rgba(255, 242, 225, 0.04) 12%);
+  --chat-date-pill: color-mix(in srgb, var(--app-surface-inset) 62%, var(--app-surface-1) 38%);
+  --keycap-hi: rgba(255, 244, 226, 0.11);
+  --keycap-mid: rgba(255, 244, 226, 0.06);
+  --link-chip-bg: color-mix(in srgb, var(--app-surface-2) 88%, rgba(255, 242, 225, 0.08) 12%);
+  --link-chip-hover: color-mix(in srgb, var(--app-surface-3) 86%, rgba(255, 242, 225, 0.12) 14%);
+  --mode-tab-active: color-mix(in srgb, var(--app-surface-3) 85%, rgba(255, 242, 225, 0.1) 15%);
+}
+
+.app-light {
+  --btn-bg: var(--rais-surface);
+  --btn-fg: rgba(0, 0, 0, 0.82);
+  --btn-border: color-mix(in srgb, var(--rais-border) 85%, rgba(0, 0, 0, 0.26));
+  --btn-edge: rgba(0, 0, 0, 0.22);
+  --btn-primary: rgba(0, 0, 0, 0.92);
+  --btn-primary-dim: rgba(0, 0, 0, 0.65);
+  --btn-danger: var(--accent-crimson);
+}
+
+html.dark {
+  --btn-bg: var(--app-surface-2);
+  --btn-fg: var(--app-text-2);
+  --btn-border: var(--app-stroke);
+  --btn-edge: rgba(255, 235, 206, 0.1);
+  --btn-primary: color-mix(in srgb, var(--exita-accent, #c8b9ff) 58%, #f3e9db 42%);
+  --btn-primary-dim: color-mix(in srgb, var(--btn-primary) 64%, #6d5f54 36%);
+  --btn-danger: var(--accent-crimson);
+}
+
+.rais-light {
+  --btn-bg: var(--rais-surface);
+  --btn-fg: rgba(0, 0, 0, 0.82);
+  --btn-border: color-mix(in srgb, var(--rais-border) 85%, rgba(0, 0, 0, 0.26));
+  --btn-edge: rgba(0, 0, 0, 0.22);
+  --btn-primary: rgba(0, 0, 0, 0.92);
+  --btn-primary-dim: rgba(0, 0, 0, 0.65);
+  --btn-danger: var(--accent-crimson);
+}
+
+.key {
+  position: relative;
+  border: var(--app-hairline) solid var(--btn-border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.88) 38%,
+    var(--btn-bg)
+  );
+  color: var(--btn-fg);
+  box-shadow:
+    0 5px 0 var(--btn-edge),
+    var(--app-shadow-1),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.72),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+  will-change: transform, box-shadow, filter, background-color, border-color;
+  transition:
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.key:hover {
+  filter: brightness(1.03);
+}
+
+.key:active,
+.key--active {
+  transform: translateY(3px);
+  box-shadow:
+    0 2px 0 var(--btn-edge),
+    0 7px 16px rgba(0, 0, 0, 0.12),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.10),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.30);
+}
+
+/* Dark: remove “white cap” effect, keep depth readable */
+html.dark .key {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04) 38%,
+    var(--btn-bg)
+  );
+  box-shadow:
+    0 5px 0 var(--btn-edge),
+    var(--app-shadow-2),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.10),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.28);
+}
+
+html.dark .key:active,
+html.dark .key--active {
+  box-shadow:
+    0 2px 0 var(--btn-edge),
+    0 9px 18px rgba(0, 0, 0, 0.36),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.26),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.08);
+}
+
+/* Light: клавиши ближе к тёплой бумаге */
+.key {
+  background: linear-gradient(180deg, var(--keycap-hi), var(--keycap-mid) 38%, var(--btn-bg));
+  box-shadow:
+    0 5px 0 var(--btn-edge),
+    0 10px 22px rgba(0, 0, 0, 0.1),
+    inset 1px 1px 2px color-mix(in srgb, #ffffff 38%, var(--rais-surface) 62%),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.key:active,
+.key--active {
+  box-shadow:
+    0 2px 0 var(--btn-edge),
+    0 6px 14px rgba(0, 0, 0, 0.1),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.08),
+    inset -1px -1px 2px color-mix(in srgb, #ffffff 32%, var(--rais-surface) 68%);
+}
+
+.concierge-chat-messages {
+  background-color: var(--chat-messages-base);
+  background-image: var(--chat-scroll-veil);
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 100%, 100% 100%;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Details: prevent keycap shadow visually "overlapping" expanded content */
+details[open] > summary.key {
+  transform: none;
+  filter: none;
+  box-shadow:
+    0 1px 0 var(--btn-edge),
+    0 6px 14px rgba(0, 0, 0, 0.10),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.60),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.04);
+}
+
+details > summary {
+  cursor: pointer;
+}
+
+details > summary .details-chevron {
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+details[open] > summary .details-chevron {
+  transform: rotate(90deg);
+}
+
+/* Details: smooth expand/collapse without layout glitches */
+details .details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+details[open] .details-content {
+  grid-template-rows: 1fr;
+}
+
+details .details-content__inner {
+  overflow: hidden;
+}
+
+details .details-content__inner > * {
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+details[open] .details-content__inner > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RAIS flyout details: overlay neighbors instead of pushing layout. */
+.rais-flyout-details {
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+  isolation: isolate;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.rais-flyout-details > summary {
+  position: relative;
+  z-index: 2;
+}
+
+.rais-flyout-details > summary.key {
+  transform: none !important;
+  box-shadow: none;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.rais-flyout-details[open] {
+  z-index: 1200;
+  border-color: color-mix(in srgb, var(--rais-border) 90%, #8a2b3b 10%);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(138, 43, 59, 0.08);
+}
+
+.rais-flyout-details[open] > summary.key {
+  background: color-mix(in srgb, var(--rais-surface) 96%, #2b1d19 4%);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rais-flyout-details .details-content {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: calc(100% - 1px);
+  z-index: 5001;
+  display: none;
+  grid-template-rows: 1fr;
+  pointer-events: auto;
+  border-top: none !important;
+}
+
+.rais-flyout-details[open] .details-content {
+  display: block;
+}
+
+.rais-flyout-details .details-content__inner {
+  overflow: visible;
+}
+
+.rais-flyout-details .details-content__inner > * {
+  opacity: 1;
+  transform: none;
+  max-height: min(60vh, 620px);
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--rais-border) 88%, #8a2b3b 12%);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  background: color-mix(in srgb, var(--rais-surface) 96%, #201612 4%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    0 0 0 1px rgba(138, 43, 59, 0.08),
+    0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.rais-flyout-details .details-content__inner > *::-webkit-scrollbar {
+  width: 10px;
+}
+
+.rais-flyout-details .details-content__inner > *::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, #8a2b3b 60%, #332522 40%);
+  border-radius: 999px;
+}
+
+/* Why/notes cards should expand inline (no overlap with next sections). */
+.rais-flyout-details--notes .details-content {
+  position: static !important;
+  left: auto;
+  right: auto;
+  top: auto;
+  z-index: auto;
+  display: block;
+  grid-template-rows: 0fr;
+  border-top: 1px solid var(--rais-border) !important;
+  pointer-events: auto;
+  opacity: 0;
+  visibility: visible;
+  transform: translateY(0);
+  transform-origin: top;
+  transition:
+    grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 260ms ease;
+}
+
+.rais-flyout-details--notes[open] .details-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.rais-flyout-details--notes .details-content__inner {
+  overflow: hidden;
+}
+
+.rais-flyout-details--notes .details-content__inner > * {
+  max-height: none;
+  overflow: visible;
+  background: var(--rais-surface) !important;
+  border: none;
+  border-radius: 0 0 18px 18px;
+  box-shadow: none;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rais-flyout-details--notes[open] {
+  z-index: auto;
+  border-color: var(--rais-border);
+  box-shadow: none;
+}
+
+.rais-flyout-details--notes[open] > summary.key {
+  background: var(--rais-surface);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rais-flyout-details--notes[open] .details-content__inner > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rais-flyout-details--notes .details-content__inner > *::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--rais-border) 72%, #2a201d 28%);
+}
+
+.rais-note-details-body {
+  background: var(--rais-surface-solid);
+}
+
+.rais-note-details-lead {
+  color: color-mix(in srgb, var(--app-text) 92%, #ffffff 8%);
+}
+
+.rais-note-callout {
+  background: color-mix(in srgb, var(--rais-surface-solid) 98%, #0a0a0a 2%);
+  border-color: color-mix(in srgb, var(--rais-border) 94%, #ffffff 6%);
+  padding: 0.9rem 1rem;
+}
+
+.rais-note-callout-title {
+  color: color-mix(in srgb, var(--app-text-3) 92%, #ffffff 8%);
+  letter-spacing: 0.11em;
+}
+
+.rais-note-callout-list {
+  color: color-mix(in srgb, var(--app-text-2) 94%, #ffffff 6%);
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------- */
+/* RAIS dropdown (checkbox + label + panel; тема RAIS без SVG-goo — меньше артефактов) */
+/* -------------------------------------------------------------------------- */
+
+.rais-goo-dropdown {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  isolation: isolate;
+}
+
+.rais-goo-dropdown:has(.rais-goo-dropdown__control:checked) {
+  z-index: 40;
+}
+
+.rais-goo-dropdown__control {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rais-goo-dropdown__face {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--rais-surface-solid);
+  border: 1px solid color-mix(in srgb, var(--rais-border) 82%, transparent 18%);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  color: var(--app-text);
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    border-radius 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rais-goo-dropdown__control:checked + .rais-goo-dropdown__face {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /* не transparent — иначе просвет 1px на стыке с панелью */
+  border-bottom: 1px solid color-mix(in srgb, var(--rais-border) 40%, var(--rais-surface-solid) 60%);
+}
+
+.rais-goo-dropdown--case .rais-goo-dropdown__control:checked + .rais-goo-dropdown__face {
+  border-radius: 22px 22px 0 0;
+}
+
+.rais-goo-dropdown__face:hover {
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 97%, #ffffff 3%);
+}
+
+.rais-goo-dropdown__control:focus-visible + .rais-goo-dropdown__face {
+  outline: 2px solid var(--app-focus);
+  outline-offset: 3px;
+}
+
+.rais-goo-dropdown__face-inner {
+  position: relative;
+}
+
+.rais-goo-dropdown__arrow {
+  border-bottom: 2px solid color-mix(in srgb, var(--app-text-3) 65%, transparent 35%);
+  border-right: 2px solid color-mix(in srgb, var(--app-text-3) 65%, transparent 35%);
+  position: absolute;
+  top: 50%;
+  right: 1.15rem;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg) translateY(-50%);
+  transform-origin: right center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rais-goo-dropdown__control:checked + .rais-goo-dropdown__face .rais-goo-dropdown__arrow {
+  transform: rotate(225deg) translateY(-50%);
+}
+
+.rais-goo-dropdown__panel {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  margin-top: -1px;
+  visibility: hidden;
+  z-index: 10;
+  opacity: 0;
+  box-sizing: border-box;
+  list-style: none;
+  background-color: var(--rais-surface-solid);
+  border: 1px solid color-mix(in srgb, var(--rais-border) 82%, transparent 18%);
+  border-top: 1px solid color-mix(in srgb, var(--rais-border) 55%, transparent 45%);
+  border-radius: 0 0 18px 18px;
+  /* Иначе фон потомков (.__panel-inner) рисуется без обрезки по радиусу — «квадратные» низы. */
+  overflow: hidden;
+  padding: 0;
+  color: var(--app-text-2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
+  transition:
+    opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.4s;
+}
+
+.rais-goo-dropdown--case .rais-goo-dropdown__panel {
+  border-radius: 0 0 22px 22px;
+}
+
+.rais-goo-dropdown__control:checked ~ .rais-goo-dropdown__panel {
+  visibility: visible;
+  z-index: 20;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.rais-goo-dropdown__panel-inner {
+  max-height: min(68vh, 720px);
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 1.1rem 1.15rem;
+  /* Тот же плотный фон, что у .__panel — без щели между шапкой и телом при скролле. */
+  background-color: var(--rais-surface-solid);
+  border-radius: 0 0 18px 18px;
+}
+
+.rais-goo-dropdown--case .rais-goo-dropdown__panel-inner {
+  max-height: min(72vh, 880px);
+  padding: 1.15rem 1.25rem;
+  border-radius: 0 0 22px 22px;
+}
+
+/* Вложенные карточки в кейс-dropdown: приглушённые границы */
+.rais-goo-dropdown--case .rais-goo-dropdown__panel-inner .grid > div[class*="rounded"] {
+  border-color: color-mix(in srgb, var(--rais-border) 72%, transparent 28%) !important;
+  box-shadow: none;
+}
+
+/* Спокойнее блок «на практике» в notes-dropdown (меньше пересвета у границ) */
+.rais-goo-dropdown .rais-note-callout {
+  border-color: color-mix(in srgb, var(--rais-border) 70%, transparent 30%);
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 98%, #0a0a0a 2%);
+  box-shadow: none;
+}
+
+/* Тёмная тема: выпадающие блоки без просвета (у --app-surface-* есть альфа) */
+html.dark .rais-goo-dropdown__face,
+html.dark .rais-goo-dropdown__panel {
+  background-color: var(--rais-surface-solid);
+}
+
+html.dark .rais-goo-dropdown__face:hover {
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 93%, rgb(246 239 229) 7%);
+}
+
+html.dark .rais-note-details-body {
+  background-color: var(--rais-surface-solid);
+}
+
+html.dark .rais-note-callout {
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 94%, rgb(12 11 10) 6%);
+}
+
+html.dark .rais-goo-dropdown .rais-note-callout {
+  border-color: color-mix(in srgb, var(--rais-border) 68%, rgb(255 251 246) 32%);
+}
+
+html.dark .rais-goo-dropdown--case .rais-goo-dropdown__panel-inner .grid > div[class*="rounded"] {
+  background-color: var(--rais-surface-solid) !important;
+}
+
+html.dark .rais-goo-dropdown--telegram .rais-goo-dropdown__face {
+  border-color: color-mix(in srgb, var(--rais-border) 70%, rgb(243 238 232) 30%);
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 92%, rgb(110 100 93) 8%);
+}
+
+html.dark .rais-goo-dropdown--telegram .rais-goo-dropdown__face:hover {
+  background-color: color-mix(in srgb, var(--rais-surface-solid) 88%, rgb(130 120 112) 12%);
+}
+
+html.dark .rais-goo-dropdown--telegram .rais-goo-dropdown__panel {
+  background-color: var(--rais-surface-solid);
+  border-color: var(--app-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rais-goo-dropdown__panel,
+  .rais-goo-dropdown__arrow,
+  .rais-goo-dropdown__face {
+    transition: none !important;
+  }
+}
+
+.rais-goo-dropdown-wrap--notes {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .rais-goo-dropdown-wrap--notes {
+    width: calc(50% - 0.375rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .rais-goo-dropdown-wrap--notes {
+    width: calc((100% - 1.5rem) / 3);
+  }
+}
+
+/* Подписи «открыть / свернуть» во face (не дублируют стрелку компонента) */
+.rais-goo-dropdown__face .rais-dd-hint-collapsed {
+  display: inline;
+}
+
+.rais-goo-dropdown__face .rais-dd-hint-expanded {
+  display: none;
+}
+
+.rais-goo-dropdown__control:checked + .rais-goo-dropdown__face .rais-dd-hint-collapsed {
+  display: none;
+}
+
+.rais-goo-dropdown__control:checked + .rais-goo-dropdown__face .rais-dd-hint-expanded {
+  display: inline;
+}
+
+/* Компактный dropdown в нижнем чате (concierge) — отдельно от «слипшейся» RAIS-пары */
+.rais-goo-dropdown--telegram {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__face {
+  width: fit-content;
+  padding: 0.35rem 0.95rem 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  border-color: color-mix(in srgb, var(--app-border) 55%, transparent 45%);
+  background-color: var(--link-chip-bg);
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__face:hover {
+  border-color: var(--app-border-strong);
+  background-color: var(--link-chip-hover);
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__face-inner {
+  padding-right: 1.05rem;
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__arrow {
+  right: 0.55rem;
+  width: 8px;
+  height: 8px;
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__control:checked + .rais-goo-dropdown__face {
+  border-radius: 999px;
+  border-bottom-color: color-mix(in srgb, var(--app-border) 55%, transparent 45%);
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__panel {
+  margin-top: 0;
+  top: calc(100% + 8px);
+  left: 0;
+  right: auto;
+  width: min(280px, calc(100vw - 3rem));
+  min-width: 200px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: var(--chat-inset-bg);
+  border: 0.5px solid var(--app-border);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 0 0 1px color-mix(in srgb, var(--app-border) 45%, transparent 55%);
+}
+
+.rais-goo-dropdown--telegram .rais-goo-dropdown__panel-inner {
+  padding: 0.5rem;
+  max-height: min(42vh, 300px);
+  border-radius: 14px;
+}
+
+.rais-flyout-scope {
+  position: relative;
+  z-index: 5000;
+  overflow: visible;
+}
+
+.rais-flyout-scope .rais-panel-root,
+.rais-flyout-scope .rais-panel-body {
+  overflow: visible;
+}
+
+@media (max-width: 1023.98px) {
+  .rais-flyout-details {
+    z-index: auto;
+  }
+
+  .rais-flyout-details[open] {
+    z-index: auto;
+  }
+
+  .rais-flyout-details .details-content {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    z-index: auto;
+    display: grid;
+    grid-template-rows: 0fr;
+    border-top: 1px solid var(--rais-border) !important;
+    transition: grid-template-rows 260ms ease;
+  }
+
+  .rais-flyout-details[open] .details-content {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  .rais-flyout-details .details-content__inner {
+    overflow: hidden;
+  }
+
+  .rais-flyout-details .details-content__inner > * {
+    max-height: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    box-shadow: none;
+  }
+}
+
+.btn--primary {
+  border-color: color-mix(in srgb, var(--btn-primary) 38%, var(--btn-border));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--btn-primary) 22%, var(--btn-bg)),
+    color-mix(in srgb, var(--btn-primary) 10%, var(--btn-bg))
+  );
+  box-shadow:
+    0 5px 0 color-mix(in srgb, var(--btn-primary-dim) 55%, var(--btn-edge)),
+    var(--app-shadow-1),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.72),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn--ghost {
+  /* default .key look */
+  box-shadow: none;
+}
+
+.btn--subtle {
+  opacity: 0.86;
+}
+
+.btn--danger {
+  border-color: color-mix(in srgb, var(--btn-danger) 38%, var(--btn-border));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--btn-danger) 14%, var(--btn-bg)),
+    var(--btn-bg)
+  );
+  box-shadow:
+    0 5px 0 color-mix(in srgb, var(--btn-danger) 35%, var(--btn-edge)),
+    var(--app-shadow-1),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.72),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key,
+  .btn--primary,
+  .btn--ghost,
+  .btn--subtle,
+  .btn--danger {
+    transition: none !important;
+  }
+
+  .concierge-chat-messages {
+    scroll-behavior: auto;
+  }
+
+  details .details-content,
+  details .details-content__inner > * {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Display font utility (headings/hero) */
+.font-display {
+  font-family: var(--font-exita-display);
+}
+
+.font-screpka {
+  font-family: var(--font-screpka), var(--font-exita-display), var(--font-exita-sans), sans-serif;
+}
+
+.redaktorsha-lab-shell h1.font-screpka,
+.redaktorsha-lab-shell h2.font-screpka {
+  font-family: var(--font-screpka), var(--font-exita-display), var(--font-exita-sans), sans-serif;
+}
+
+/* Telegram-like chat wallpaper (subtle noise + tint) */
+.telegram-chat-bg {
+  background-color: #0e1621;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(79, 70, 229, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 100%, rgba(147, 51, 234, 0.08), transparent 45%);
+}
+
+/* Redaktorsha: отделённый фирменный “Document Lab” (не RAIS-лендинг). */
+.redaktorsha-lab-shell {
+  --doclab-indigo: #4338ca;
+  --doclab-violet: #7c3aed;
+  --doclab-sky: #0369a1;
+  --doclab-ink: #111113;
+  --doclab-subtle: rgba(17, 17, 19, 0.64);
+  --doclab-hairline: rgba(14, 14, 18, 0.12);
+  --doclab-border: rgba(15, 15, 22, 0.17);
+  --doclab-border-strong: rgba(12, 12, 19, 0.29);
+  --doclab-toplight: rgba(255, 255, 255, 0.86);
+  --doclab-lowlight: rgba(11, 13, 20, 0.11);
+  --doclab-depth: rgba(16, 17, 28, 0.2);
+
+  --exita-accent: color-mix(in srgb, var(--doclab-violet) 58%, var(--doclab-indigo) 42%);
+  --exita-ambient: color-mix(in srgb, var(--doclab-violet) 28%, transparent);
+
+  /* Глубокие, но чистые поверхности */
+  --app-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 247, 252, 0.9));
+  --app-surface-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 243, 250, 0.88));
+  --app-border: var(--doclab-border);
+  --app-border-strong: var(--doclab-border-strong);
+  --app-fg: var(--doclab-ink);
+  --app-fg-muted: var(--doclab-subtle);
+  --app-fg-subtle: rgba(17, 17, 19, 0.5);
+  --doclab-neon: color-mix(in srgb, var(--doclab-violet) 62%, var(--doclab-sky) 38%);
+
+  /* Borrow keycap depth language from /rais/solve */
+  --btn-bg: rgba(249, 250, 255, 0.98);
+  --btn-fg: rgba(14, 14, 20, 0.88);
+  --btn-border: color-mix(in srgb, var(--doclab-border) 78%, var(--doclab-neon));
+  --btn-edge: rgba(30, 32, 58, 0.22);
+  --btn-primary: color-mix(in srgb, var(--doclab-violet) 64%, var(--doclab-indigo) 36%);
+  --btn-primary-dim: color-mix(in srgb, var(--doclab-violet) 52%, #1f1a4e 48%);
+  --keycap-hi: rgba(255, 255, 255, 0.99);
+  --keycap-mid: rgba(245, 247, 255, 0.94);
+}
+
+.redaktorsha-lab-shell .doclab-kicker {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--app-fg-subtle);
+}
+
+.redaktorsha-lab-shell .doclab-key {
+  border-radius: 14px;
+  letter-spacing: 0.02em;
+}
+
+.redaktorsha-lab-shell .doclab-key-main {
+  min-height: 48px;
+  padding-inline: 1.1rem;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.redaktorsha-lab-shell .doclab-key-secondary {
+  min-height: 46px;
+  padding-inline: 1rem;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.redaktorsha-lab-shell .doclab-glow {
+  box-shadow:
+    0 24px 48px rgba(14, 15, 26, 0.16),
+    0 3px 10px rgba(28, 29, 43, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--exita-accent) 18%, transparent) inset,
+    0 1px 0 var(--doclab-toplight) inset;
+}
+
+.redaktorsha-lab-shell .doclab-laser {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--doclab-indigo) 0%, transparent),
+    color-mix(in srgb, var(--doclab-violet) 72%, transparent),
+    color-mix(in srgb, var(--doclab-sky) 60%, transparent)
+  );
+}
+
+.redaktorsha-lab-shell .doclab-neon-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--doclab-indigo) 75%, black 25%),
+    color-mix(in srgb, var(--doclab-violet) 78%, black 22%),
+    color-mix(in srgb, var(--doclab-sky) 70%, black 30%)
+  );
+  box-shadow:
+    0 22px 34px rgba(21, 20, 45, 0.34),
+    0 8px 14px rgba(13, 14, 24, 0.22),
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 40%, transparent) inset,
+    0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  transform: translateZ(0);
+}
+
+.redaktorsha-lab-shell .doclab-neon-btn::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(120deg, transparent 28%, rgba(255, 255, 255, 0.35) 50%, transparent 72%);
+  transform: translateX(-70%);
+  animation: doclab-sheen 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.redaktorsha-lab-shell .doclab-neon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 26px 40px rgba(21, 20, 45, 0.36),
+    0 12px 20px rgba(13, 14, 24, 0.24),
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 44%, transparent) inset,
+    0 1px 0 rgba(255, 255, 255, 0.34) inset;
+}
+
+.redaktorsha-lab-shell .doclab-neon-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 15px 24px rgba(21, 20, 45, 0.32),
+    0 6px 12px rgba(13, 14, 24, 0.2),
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 38%, transparent) inset,
+    0 1px 0 rgba(255, 255, 255, 0.22) inset;
+}
+
+.redaktorsha-lab-shell .doclab-neon-edge {
+  border: 1px solid color-mix(in srgb, var(--doclab-neon) 28%, rgba(0, 0, 0, 0.16));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 12%, transparent) inset,
+    0 1px 0 var(--doclab-toplight) inset,
+    0 -1px 0 var(--doclab-lowlight) inset,
+    0 14px 28px rgba(11, 12, 23, 0.12);
+}
+
+.redaktorsha-lab-shell .doclab-panel-accent {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 26px 56px rgba(12, 13, 23, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 0 rgba(10, 12, 18, 0.08) inset;
+}
+
+.redaktorsha-lab-shell .doclab-panel-accent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(560px 180px at 12% 0%, color-mix(in srgb, var(--doclab-violet) 20%, transparent), transparent 72%),
+    linear-gradient(90deg, color-mix(in srgb, var(--doclab-indigo) 18%, transparent), transparent 26%);
+  opacity: 0.36;
+}
+
+.redaktorsha-lab-shell .doclab-beam {
+  animation: doclab-beam 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.redaktorsha-lab-shell .doclab-pulse {
+  animation: doclab-pulse 3s ease-in-out infinite;
+}
+
+.redaktorsha-lab-shell :where(h1, h2) {
+  font-family: var(--font-exita-display);
+  color: var(--app-fg);
+  text-wrap: balance;
+}
+
+.redaktorsha-lab-shell :where(.rounded-\[14px\]) {
+  border-radius: 16px;
+}
+
+.redaktorsha-lab-shell :where(.rounded-\[16px\]) {
+  border-radius: 16px;
+}
+
+.redaktorsha-lab-shell :where(.rounded-\[18px\]) {
+  border-radius: 20px;
+}
+
+.redaktorsha-lab-shell :where(.rounded-\[22px\]) {
+  border-radius: 24px;
+}
+
+.redaktorsha-lab-shell .doclab-surface-inline {
+  border: 1px solid var(--doclab-hairline);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.74)),
+    color-mix(in srgb, #fff 68%, transparent);
+  box-shadow:
+    0 10px 22px rgba(11, 12, 21, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.94) inset,
+    0 -1px 0 rgba(12, 13, 20, 0.05) inset;
+}
+
+.redaktorsha-lab-shell .doclab-volume-surface {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72)),
+    color-mix(in srgb, #fff 64%, transparent);
+  border: 1px solid color-mix(in srgb, var(--doclab-neon) 14%, rgba(0, 0, 0, 0.12));
+  box-shadow:
+    0 18px 34px rgba(12, 13, 23, 0.12),
+    0 8px 16px rgba(11, 12, 20, 0.06),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+}
+
+.redaktorsha-lab-shell .rais-panel-root {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 247, 252, 0.92));
+  box-shadow:
+    0 28px 60px rgba(12, 13, 21, 0.16),
+    0 10px 20px rgba(14, 15, 24, 0.07),
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 -1px 0 rgba(8, 9, 14, 0.06) inset;
+}
+
+.redaktorsha-lab-shell .rais-panel-root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent 24%);
+  opacity: 0.9;
+}
+
+.redaktorsha-lab-shell .rais-panel-header {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.4));
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.redaktorsha-lab-shell .rais-panel-title {
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(17, 17, 19, 0.8);
+}
+
+.redaktorsha-lab-shell .rais-panel-body {
+  color: rgba(17, 17, 19, 0.84);
+  line-height: 1.6;
+}
+
+.redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn),
+.redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full) {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.7));
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.09),
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  min-height: 42px;
+}
+
+.redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn):hover,
+.redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full):hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 24px rgba(0, 0, 0, 0.11),
+    0 1px 0 rgba(255, 255, 255, 0.96) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.06) inset;
+}
+
+.redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn):active,
+.redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full):active {
+  transform: translateY(1px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.84) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.08) inset;
+}
+
+.redaktorsha-lab-shell .rais-tag {
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.94) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.04) inset;
+  font-weight: 500;
+}
+
+.redaktorsha-lab-shell .doclab-matrix-head {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 250, 255, 0.95));
+}
+
+.redaktorsha-lab-shell .doclab-matrix-head > :first-child {
+  border-top-left-radius: 14px;
+}
+
+.redaktorsha-lab-shell .doclab-matrix-head > :last-child {
+  border-top-right-radius: 14px;
+}
+
+.redaktorsha-lab-shell .doclab-matrix-row:nth-child(even) {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.redaktorsha-lab-shell .doclab-matrix-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Premium readability tuning: desktop vs mobile */
+@media (min-width: 1200px) {
+  .redaktorsha-lab-shell .rais-panel-root {
+    box-shadow:
+      0 34px 70px rgba(10, 11, 20, 0.18),
+      0 14px 24px rgba(12, 13, 22, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.94) inset,
+      0 -1px 0 rgba(8, 9, 14, 0.07) inset;
+  }
+
+  .redaktorsha-lab-shell .rais-panel-header {
+    padding: 1.35rem 1.75rem 1.2rem;
+  }
+
+  .redaktorsha-lab-shell .rais-panel-body {
+    padding: 1.85rem;
+  }
+
+  .redaktorsha-lab-shell .doclab-volume-surface {
+    box-shadow:
+      0 22px 42px rgba(10, 11, 21, 0.13),
+      0 10px 18px rgba(11, 12, 20, 0.07),
+      0 1px 0 rgba(255, 255, 255, 0.94) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+  }
+}
+
+@media (max-width: 767px) {
+  .redaktorsha-lab-shell .rais-panel-root {
+    box-shadow:
+      0 14px 30px rgba(10, 11, 20, 0.12),
+      0 6px 12px rgba(12, 13, 22, 0.06),
+      0 1px 0 rgba(255, 255, 255, 0.92) inset,
+      0 -1px 0 rgba(8, 9, 14, 0.05) inset;
+  }
+
+  .redaktorsha-lab-shell .rais-panel-header {
+    padding: 1rem 1rem 0.9rem;
+  }
+
+  .redaktorsha-lab-shell .rais-panel-body {
+    padding: 1rem;
+    line-height: 1.58;
+  }
+
+  .redaktorsha-lab-shell .doclab-kicker {
+    letter-spacing: 0.15em;
+  }
+
+  .redaktorsha-lab-shell .doclab-panel-accent::before {
+    opacity: 0.34;
+  }
+
+  .redaktorsha-lab-shell .doclab-volume-surface {
+    box-shadow:
+      0 10px 22px rgba(10, 11, 21, 0.1),
+      0 1px 0 rgba(255, 255, 255, 0.92) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+  }
+
+  .redaktorsha-lab-shell .doclab-neon-btn {
+    box-shadow:
+      0 14px 24px rgba(21, 20, 45, 0.28),
+      0 6px 12px rgba(13, 14, 24, 0.2),
+      0 0 0 1px color-mix(in srgb, var(--doclab-neon) 36%, transparent) inset,
+      0 1px 0 rgba(255, 255, 255, 0.26) inset;
+  }
+}
+
+@keyframes doclab-sheen {
+  0% {
+    transform: translateX(-72%);
+  }
+  55%,
+  100% {
+    transform: translateX(74%);
+  }
+}
+
+@keyframes doclab-pulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes doclab-beam {
+  0%,
+  100% {
+    transform: translateX(-8px);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .redaktorsha-lab-shell .doclab-neon-btn::after,
+  .redaktorsha-lab-shell .doclab-beam,
+  .redaktorsha-lab-shell .doclab-pulse {
+    animation: none !important;
+    transform: none !important;
+  }
+  .redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn),
+  .redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full) {
+    transition: none !important;
+  }
+}
+
+/* AI Analytics: deck-like dark language (scoped to /rais/analytics). */
+.analytics-lab-shell {
+  --analytics-bg-main: #090a24;
+  --analytics-bg-secondary: #160c3a;
+  --analytics-card-bg: #171a25;
+  --analytics-card-border: rgba(170, 180, 212, 0.26);
+  --analytics-accent: #9b8bd9;
+  --analytics-accent-strong: #7d73cb;
+  --analytics-chip-bg: rgba(155, 139, 217, 0.16);
+  --analytics-panel-bg: #171b28;
+  --analytics-deck-bg: #1c2030;
+  --analytics-inset-bg: #141824;
+  --analytics-header-bg: #22263a;
+  --analytics-frame-radius: 20px;
+  --analytics-frame-shape-a: 24px 18px 28px 20px;
+  --analytics-frame-shape-b: 18px 26px 18px 30px;
+  --analytics-frame-shape-c: 28px 16px 22px 26px;
+  --analytics-frame-accent-w: 3px;
+  /* Левая полоса в духе панели ошибки сборки Next.js. */
+  --analytics-frame-accent: #a78bfa;
+  --analytics-frame-border: var(--analytics-card-border);
+  --analytics-frame-shadow:
+    0 0 0 1px rgba(186, 194, 230, 0.16),
+    0 18px 56px rgba(5, 2, 20, 0.58);
+  --analytics-frame-inset-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --analytics-frame-hover-glow: 0 0 0 1px color-mix(in srgb, var(--analytics-accent) 28%, rgba(255, 255, 255, 0.12));
+  --analytics-block-soft-glow: 0 8px 24px rgba(128, 146, 201, 0.14);
+  --analytics-button-glow: 0 8px 24px rgba(128, 146, 201, 0.26);
+
+  --app-bg: #0b0d24;
+  --app-fg: #f7f8fc;
+  --app-text: #f7f8fc;
+  --app-text-2: #e3e7f2;
+  --app-text-3: #c2c8dc;
+  --app-text-disabled: #949cb8;
+  --app-surface: #1c2131;
+  --app-surface-2: #22273a;
+  --app-surface-3: #2a3046;
+  --app-glass-bg: var(--analytics-card-bg);
+  --app-stroke: var(--analytics-card-border);
+  --app-separator: rgba(177, 187, 221, 0.36);
+  --app-separator-subtle: rgba(177, 187, 221, 0.2);
+  --app-focus: color-mix(in srgb, var(--analytics-accent) 64%, #ffffff 36%);
+  --exita-accent: var(--analytics-accent-strong);
+  --exita-ambient: color-mix(in srgb, var(--analytics-accent) 34%, transparent);
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(159, 122, 234, 0.26) 0%, transparent 36%),
+    radial-gradient(circle at 84% 18%, rgba(99, 102, 241, 0.18) 0%, transparent 30%),
+    radial-gradient(circle at 52% 78%, rgba(124, 58, 237, 0.12) 0%, transparent 44%),
+    linear-gradient(140deg, var(--analytics-bg-main), var(--analytics-bg-secondary));
+}
+
+.analytics-lab-shell::before,
+.analytics-lab-shell::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(46px);
+}
+
+.analytics-lab-shell::before {
+  top: -140px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(155, 124, 255, 0.4), transparent 66%);
+}
+
+.analytics-lab-shell::after {
+  left: -130px;
+  bottom: -170px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.22), transparent 70%);
+}
+
+/* Слой с WebGL-фоном: без собственной заливки, читаемость через MicrozoneBackdrop и карточки. */
+.analytics-lab-shell.analytics-lab-shell--quantum {
+  background: transparent !important;
+}
+
+.analytics-lab-shell.analytics-lab-shell--quantum::before,
+.analytics-lab-shell.analytics-lab-shell--quantum::after {
+  display: none;
+}
+
+html.dark .analytics-lab-shell {
+  --analytics-bg-main: #070818;
+  --analytics-bg-secondary: #12082f;
+  --analytics-card-bg: #16192a;
+  --analytics-card-border: rgba(184, 196, 233, 0.34);
+  --analytics-accent: #c2b4f1;
+  --analytics-accent-strong: #a8a1df;
+  --analytics-chip-bg: rgba(194, 180, 241, 0.16);
+  --analytics-panel-bg: #151a2b;
+  --analytics-deck-bg: #1a1f32;
+  --analytics-inset-bg: #131726;
+  --analytics-header-bg: #20263a;
+  --analytics-frame-accent: #c084fc;
+  --analytics-frame-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 20px 56px rgba(2, 1, 12, 0.72);
+  --analytics-frame-inset-bevel: inset 0 1px 0 rgba(255, 255, 255, 0.075);
+  --analytics-frame-hover-glow: 0 0 0 1px color-mix(in srgb, var(--analytics-accent) 32%, rgba(255, 255, 255, 0.14));
+  --analytics-block-soft-glow: 0 12px 34px rgba(138, 162, 214, 0.18);
+  --analytics-button-glow: 0 10px 28px rgba(138, 162, 214, 0.26);
+  --app-bg: #090a1d;
+  --app-fg: #f4f7ff;
+  --app-text: #f4f7ff;
+  --app-text-2: #e0e6f6;
+  --app-text-3: #bec8e2;
+  --app-text-disabled: #93a0bf;
+  --app-surface: #1a2033;
+  --app-surface-2: #20273d;
+  --app-surface-3: #28304b;
+  --app-separator: rgba(184, 196, 233, 0.46);
+  --app-separator-subtle: rgba(184, 196, 233, 0.28);
+  background:
+    radial-gradient(circle at 14% 10%, rgba(167, 139, 250, 0.3) 0%, transparent 36%),
+    radial-gradient(circle at 84% 18%, rgba(129, 140, 248, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 52% 78%, rgba(139, 92, 246, 0.14) 0%, transparent 44%),
+    linear-gradient(140deg, var(--analytics-bg-main), var(--analytics-bg-secondary));
+}
+
+html.dark .analytics-lab-shell.analytics-lab-shell--quantum {
+  background: transparent !important;
+}
+
+.analytics-lab-shell .rais-panel-root {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  --analytics-glow-x: 50%;
+  --analytics-glow-y: 50%;
+  border-radius: var(--analytics-frame-shape-a) !important;
+  overflow: hidden;
+  background:
+    radial-gradient(140% 120% at 92% -10%, color-mix(in srgb, var(--analytics-accent) 14%, transparent), transparent 62%),
+    linear-gradient(175deg, color-mix(in srgb, var(--analytics-panel-bg) 94%, #ffffff 6%), var(--analytics-panel-bg));
+  border: 1px solid var(--analytics-frame-border);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-block-soft-glow);
+  backdrop-filter: none !important;
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.36s cubic-bezier(0.18, 0.74, 0.16, 1),
+    border-color 0.18s ease,
+    box-shadow 0.22s ease;
+}
+
+.analytics-lab-shell .rais-panel-root:hover {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 55%, var(--analytics-accent) 45%);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-frame-hover-glow);
+}
+
+.analytics-lab-shell .rais-panel-header {
+  background: var(--analytics-header-bg);
+  border-bottom: 1px solid var(--app-separator);
+  padding-inline: 1.25rem;
+  padding-block: 1rem;
+  backdrop-filter: none !important;
+}
+
+.analytics-lab-shell .analytics-deck-card {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  --analytics-glow-x: 50%;
+  --analytics-glow-y: 50%;
+  border-radius: var(--analytics-frame-shape-b);
+  overflow: hidden;
+  border: 1px solid var(--analytics-frame-border);
+  background:
+    radial-gradient(125% 120% at 100% 0%, color-mix(in srgb, var(--analytics-accent) 11%, transparent), transparent 66%),
+    linear-gradient(168deg, color-mix(in srgb, var(--analytics-deck-bg) 95%, #ffffff 5%), var(--analytics-deck-bg));
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-block-soft-glow);
+  backdrop-filter: none !important;
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.36s cubic-bezier(0.18, 0.74, 0.16, 1),
+    border-color 0.18s ease,
+    box-shadow 0.22s ease;
+}
+
+.analytics-lab-shell .analytics-deck-card:hover {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 55%, var(--analytics-accent) 45%);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-frame-hover-glow);
+}
+
+.analytics-lab-shell .analytics-inset-frame {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  --analytics-glow-x: 50%;
+  --analytics-glow-y: 50%;
+  border-radius: var(--analytics-frame-shape-c);
+  overflow: hidden;
+  border: 1px solid var(--analytics-frame-border);
+  background:
+    radial-gradient(120% 120% at 92% -5%, color-mix(in srgb, var(--analytics-accent) 9%, transparent), transparent 62%),
+    linear-gradient(164deg, color-mix(in srgb, var(--analytics-inset-bg) 96%, #ffffff 4%), var(--analytics-inset-bg));
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.04), var(--analytics-frame-inset-bevel), var(--analytics-block-soft-glow);
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  will-change: transform, box-shadow;
+  transition: transform 0.34s cubic-bezier(0.18, 0.74, 0.16, 1), border-color 0.18s ease, box-shadow 0.2s ease;
+}
+
+.analytics-lab-shell .analytics-inset-frame:hover {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 60%, var(--analytics-accent) 40%);
+}
+
+.analytics-lab-shell .analytics-field {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  border-radius: calc(var(--analytics-frame-radius) - 1px);
+  border: 1px solid var(--app-separator);
+  background: var(--app-surface-3);
+  font-variant-numeric: tabular-nums;
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  transition:
+    transform 0.3s cubic-bezier(0.18, 0.74, 0.16, 1),
+    border-color 0.15s ease,
+    box-shadow 0.18s ease,
+    background-color 0.15s ease;
+}
+
+.analytics-lab-shell .analytics-field:hover {
+  border-color: color-mix(in srgb, var(--app-separator) 65%, var(--analytics-accent) 35%);
+}
+
+.analytics-lab-shell .analytics-field:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--analytics-accent-strong) 55%, var(--analytics-frame-accent) 45%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--analytics-accent) 26%, transparent);
+}
+
+.analytics-lab-shell .analytics-metric-badge {
+  border-radius: 4px;
+  border: 1px solid var(--app-separator);
+  background: var(--app-surface-3);
+  font-variant-numeric: tabular-nums;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.analytics-lab-shell .analytics-chip {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  border-radius: 4px;
+  border: 1px solid var(--analytics-frame-border);
+  background: var(--analytics-chip-bg);
+  color: color-mix(in srgb, var(--analytics-accent-strong) 88%, #21153f 12%);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  transition: transform 0.3s cubic-bezier(0.18, 0.74, 0.16, 1), border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.analytics-lab-shell .analytics-chip:hover {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 50%, var(--analytics-accent) 50%);
+  background: color-mix(in srgb, var(--analytics-chip-bg) 82%, #ffffff 18%);
+}
+
+.analytics-lab-shell .analytics-kicker {
+  font-family: var(--font-exita-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--analytics-accent-strong) 88%, #20123d 12%);
+}
+
+.analytics-lab-shell .font-display {
+  font-family: var(--font-exita-sans), system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+.analytics-lab-shell .rais-panel-title {
+  font-family: var(--font-exita-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--app-text-3);
+}
+
+.analytics-lab-shell .analytics-display-title {
+  font-family: var(--font-exita-sans), system-ui, -apple-system, Segoe UI, sans-serif;
+  font-size: clamp(1.95rem, 1.4rem + 2.25vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  color: var(--app-text);
+}
+
+.analytics-lab-shell .analytics-section-title {
+  font-family: var(--font-exita-sans), system-ui, -apple-system, Segoe UI, sans-serif;
+  font-size: clamp(1.22rem, 1.06rem + 0.65vw, 1.56rem);
+  font-weight: 650;
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  color: var(--app-text);
+  text-wrap: balance;
+}
+
+.analytics-lab-shell .analytics-lead {
+  max-width: 76ch;
+  font-size: clamp(0.93rem, 0.88rem + 0.2vw, 0.99rem);
+  line-height: 1.82;
+  color: color-mix(in srgb, var(--app-text-2) 92%, #ffffff 8%);
+}
+
+.analytics-lab-shell .analytics-body-copy {
+  font-size: 0.915rem;
+  line-height: 1.78;
+  color: color-mix(in srgb, var(--app-text-2) 90%, #ffffff 10%);
+}
+
+.analytics-lab-shell .analytics-caption {
+  font-size: 0.79rem;
+  line-height: 1.52;
+  color: color-mix(in srgb, var(--app-text-3) 88%, #ffffff 12%);
+}
+
+.analytics-lab-shell .rais-microzone-shell-header {
+  position: relative;
+  z-index: 1;
+  border-bottom-color: transparent !important;
+  border-radius: 30px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--analytics-header-bg) 86%, #ffffff 14%), var(--analytics-header-bg));
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 28%, var(--app-separator) 72%);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-block-soft-glow);
+}
+
+.analytics-lab-shell .rais-microzone-content-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.analytics-lab-shell .rais-microzone-shell-header [class*="text-(--app-fg-subtle)"] {
+  color: color-mix(in srgb, var(--analytics-accent-strong) 62%, var(--app-text-3) 38%) !important;
+  letter-spacing: 0.2em;
+}
+
+.analytics-lab-shell .rais-microzone-shell-header [class*="text-(--app-fg)"] {
+  color: var(--app-text) !important;
+}
+
+.analytics-lab-shell .rais-microzone-shell-header [class*="text-(--app-fg-muted)"] {
+  color: color-mix(in srgb, var(--app-text-2) 86%, var(--app-text) 14%) !important;
+}
+
+.analytics-lab-shell .rais-microzone-eyebrow-main {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 30%, transparent);
+  background: color-mix(in srgb, var(--analytics-accent) 12%, transparent);
+  font-weight: 700;
+}
+
+.analytics-lab-shell .rais-microzone-eyebrow-code {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 24%, transparent);
+  background: color-mix(in srgb, var(--analytics-accent) 9%, transparent);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.analytics-lab-shell .rais-microzone-title-main {
+  flex: 1 1 360px;
+  font-size: clamp(2.2rem, 1.4rem + 2.3vw, 4rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.analytics-lab-shell .rais-microzone-title-wrap {
+  max-width: 100%;
+}
+
+.analytics-lab-shell .rais-microzone-title-subtitle {
+  flex: 1 1 280px;
+  max-width: 16ch;
+  color: color-mix(in srgb, var(--analytics-accent-strong) 62%, var(--app-text-2) 38%) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.analytics-lab-shell .rais-microzone-description {
+  font-size: clamp(0.95rem, 0.88rem + 0.22vw, 1.04rem);
+  line-height: 1.84;
+  color: color-mix(in srgb, var(--app-text-2) 92%, #ffffff 8%);
+}
+
+.analytics-lab-shell .rais-microzone-accent-label {
+  font-weight: 700;
+}
+
+.analytics-lab-shell .analytics-section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--app-text-3) 84%, #ffffff 16%);
+}
+
+.analytics-lab-shell .analytics-card-title {
+  font-size: clamp(1.24rem, 1.12rem + 0.4vw, 1.5rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--app-text);
+}
+
+.analytics-lab-shell .analytics-solution-flow {
+  padding: 0.9rem 0.65rem 0.6rem;
+}
+
+.analytics-lab-shell .analytics-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--app-text-3);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.45rem;
+}
+
+.analytics-lab-shell .analytics-section-divider-line {
+  height: 1px;
+  flex: 1;
+  min-width: 48px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--analytics-accent) 58%, var(--app-separator) 42%), transparent);
+}
+
+.analytics-lab-shell .analytics-solution-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 1.75rem;
+  padding: 0 0.5rem;
+}
+
+.analytics-lab-shell .analytics-step-infographic {
+  display: grid;
+  gap: 1.45rem;
+}
+
+.analytics-lab-shell .analytics-step-row {
+  --analytics-step-index: 0;
+  --analytics-step-offset: calc((3 - var(--analytics-step-index)) * 1.2rem);
+  --analytics-folder-top: color-mix(in srgb, #8b5cf6 36%, #4f46e5 64%);
+  --analytics-folder-mid: color-mix(in srgb, #7c3aed 44%, #3730a3 56%);
+  --analytics-folder-low: color-mix(in srgb, #6d28d9 42%, #312e81 58%);
+  --analytics-folder-edge: color-mix(in srgb, var(--analytics-accent) 44%, rgba(255, 255, 255, 0.18));
+  --analytics-folder-shadow: rgba(8, 10, 20, 0.32);
+  --analytics-folder-shape: 14px 10px 12px 10px;
+  --analytics-caption-shape: 6px 12px 12px 6px;
+  display: grid;
+  grid-template-columns: minmax(198px, 254px) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  margin-left: var(--analytics-step-offset);
+  padding-inline: 0.1rem;
+  animation: analytics-step-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--analytics-step-index) * 110ms);
+}
+
+.analytics-lab-shell .analytics-step-row:nth-child(2) {
+  --analytics-folder-top: color-mix(in srgb, #6366f1 54%, #4f46e5 46%);
+  --analytics-folder-mid: color-mix(in srgb, #4f46e5 58%, #3730a3 42%);
+  --analytics-folder-low: color-mix(in srgb, #4338ca 62%, #312e81 38%);
+  --analytics-folder-edge: color-mix(in srgb, #a5b4fc 48%, rgba(255, 255, 255, 0.16));
+  --analytics-folder-shape: 12px 14px 10px 14px;
+  --analytics-caption-shape: 6px 14px 10px 8px;
+}
+
+.analytics-lab-shell .analytics-step-row:nth-child(3) {
+  --analytics-folder-top: color-mix(in srgb, #38bdf8 36%, #4f46e5 64%);
+  --analytics-folder-mid: color-mix(in srgb, #2563eb 48%, #3730a3 52%);
+  --analytics-folder-low: color-mix(in srgb, #1d4ed8 48%, #312e81 52%);
+  --analytics-folder-edge: color-mix(in srgb, #93c5fd 44%, rgba(255, 255, 255, 0.14));
+  --analytics-folder-shape: 14px 10px 12px 12px;
+  --analytics-caption-shape: 8px 12px 12px 8px;
+}
+
+.analytics-lab-shell .analytics-step-row:nth-child(4) {
+  --analytics-folder-top: color-mix(in srgb, #818cf8 44%, #4f46e5 56%);
+  --analytics-folder-mid: color-mix(in srgb, #6366f1 56%, #312e81 44%);
+  --analytics-folder-low: color-mix(in srgb, #4f46e5 62%, #1e1b4b 38%);
+  --analytics-folder-edge: color-mix(in srgb, #c7d2fe 42%, rgba(255, 255, 255, 0.14));
+  --analytics-folder-shape: 10px 12px 10px 12px;
+  --analytics-caption-shape: 6px 10px 10px 6px;
+}
+
+.analytics-lab-shell .analytics-step-folder {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: analytics-folder-float 4.2s ease-in-out infinite;
+  animation-delay: calc(var(--analytics-step-index) * 180ms);
+}
+
+.analytics-lab-shell .analytics-step-folder-tab {
+  position: absolute;
+  left: 1.08rem;
+  top: -13px;
+  height: 15px;
+  width: 58px;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid color-mix(in srgb, var(--analytics-folder-edge) 84%, transparent);
+  border-bottom: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--analytics-folder-top) 88%, #ffffff 12%), var(--analytics-folder-mid));
+}
+
+.analytics-lab-shell .analytics-step-folder-body {
+  position: relative;
+  border-radius: var(--analytics-folder-shape);
+  border: 1px solid color-mix(in srgb, var(--analytics-folder-edge) 86%, transparent);
+  padding: 1.18rem 1.14rem 1.06rem;
+  color: #f7f9ff;
+  background: linear-gradient(180deg, var(--analytics-folder-top), var(--analytics-folder-mid) 52%, var(--analytics-folder-low));
+  box-shadow:
+    0 16px 28px color-mix(in srgb, var(--analytics-folder-shadow) 86%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.analytics-lab-shell .analytics-step-folder-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 34%),
+    linear-gradient(90deg, transparent 82%, rgba(0, 0, 0, 0.12));
+}
+
+.analytics-lab-shell .analytics-step-folder-body::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 11px;
+  width: 46px;
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: repeating-linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0.82) 0 3px,
+    rgba(255, 255, 255, 0.18) 3px 6px
+  );
+  opacity: 0.65;
+}
+
+.analytics-lab-shell .analytics-step-label {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  font-weight: 700;
+  opacity: 0.92;
+}
+
+.analytics-lab-shell .analytics-step-number {
+  margin-top: 0.35rem;
+  font-size: clamp(2rem, 1.5rem + 1vw, 2.5rem);
+  line-height: 0.92;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.analytics-lab-shell .analytics-step-progress-row {
+  margin-top: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.analytics-lab-shell .analytics-step-progress-track {
+  position: relative;
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.analytics-lab-shell .analytics-step-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.28));
+  animation: analytics-progress-glint 2.8s ease-in-out infinite;
+}
+
+.analytics-lab-shell .analytics-step-caption {
+  position: relative;
+  border-radius: var(--analytics-caption-shape);
+  min-height: 126px;
+  border: 1px solid color-mix(in srgb, var(--analytics-frame-border) 78%, var(--analytics-accent) 22%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--analytics-deck-bg) 88%, #ffffff 12%),
+    color-mix(in srgb, var(--analytics-panel-bg) 92%, #ffffff 8%)
+  );
+  box-shadow: 0 14px 24px rgba(5, 8, 19, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  padding: 1.25rem 1.35rem 1.2rem 1.2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.analytics-lab-shell .analytics-step-caption::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 34%);
+}
+
+.analytics-lab-shell .analytics-step-caption .analytics-card-title {
+  color: color-mix(in srgb, var(--app-text) 86%, #c4b5fd 14%);
+  font-size: clamp(1.01rem, 0.95rem + 0.2vw, 1.18rem);
+}
+
+.analytics-lab-shell .analytics-step-caption .analytics-body-copy {
+  color: color-mix(in srgb, var(--app-text-2) 88%, #dbe7ff 12%);
+  line-height: 1.52;
+  font-size: 0.84rem;
+}
+
+.analytics-lab-shell .analytics-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 54%, rgba(255, 255, 255, 0.46));
+  color: color-mix(in srgb, #d7cbff 72%, var(--app-text) 28%);
+  background: color-mix(in srgb, var(--analytics-accent) 18%, var(--analytics-panel-bg) 82%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.analytics-lab-shell .analytics-contrast-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  margin: 0.2rem 0.4rem 0.5rem;
+}
+
+.analytics-lab-shell .analytics-contrast-card {
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--analytics-frame-border) 78%, var(--analytics-accent) 22%);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--analytics-deck-bg) 90%, #ffffff 10%), var(--analytics-panel-bg));
+  box-shadow: 0 14px 28px rgba(8, 10, 22, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 1.1rem 1.15rem 1.05rem;
+}
+
+.analytics-lab-shell .analytics-contrast-card--before {
+  border-left-color: color-mix(in srgb, #64748b 52%, var(--analytics-frame-border) 48%);
+}
+
+.analytics-lab-shell .analytics-contrast-card--after {
+  border-left-color: color-mix(in srgb, var(--analytics-accent) 62%, var(--analytics-frame-border) 38%);
+}
+
+.analytics-lab-shell .analytics-contrast-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 44%, var(--analytics-frame-border) 56%);
+  background: color-mix(in srgb, var(--analytics-accent) 16%, var(--analytics-panel-bg) 84%);
+  color: color-mix(in srgb, #e4dbff 74%, var(--app-text) 26%);
+  box-shadow: 0 8px 20px rgba(11, 8, 26, 0.3);
+}
+
+.analytics-lab-shell .analytics-mini-toggle {
+  min-height: 31px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+.analytics-lab-shell .analytics-delivery-timeline {
+  position: relative;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.analytics-lab-shell .analytics-delivery-timeline::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--analytics-accent) 42%, transparent), color-mix(in srgb, var(--analytics-accent-strong) 18%, transparent));
+}
+
+.analytics-lab-shell .analytics-delivery-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.analytics-lab-shell .analytics-delivery-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--analytics-accent) 42%, var(--analytics-frame-border) 58%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--analytics-accent) 38%, var(--analytics-panel-bg) 62%), color-mix(in srgb, var(--analytics-accent-strong) 24%, var(--analytics-panel-bg) 76%));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.analytics-lab-shell .analytics-delivery-content {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--analytics-frame-border) 78%, var(--analytics-accent) 22%);
+  background: color-mix(in srgb, var(--analytics-panel-bg) 92%, #ffffff 8%);
+  padding: 0.78rem 0.9rem;
+}
+
+.analytics-lab-shell .analytics-cta-actions {
+  display: grid;
+  gap: 0.72rem;
+  min-width: min(100%, 420px);
+}
+
+@media (max-width: 1199px) {
+  .analytics-lab-shell .analytics-step-row {
+    --analytics-step-offset: calc((3 - var(--analytics-step-index)) * 0.75rem);
+    grid-template-columns: minmax(178px, 222px) minmax(0, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .analytics-lab-shell .analytics-section-divider {
+    gap: 0.6rem;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding-inline: 0;
+  }
+
+  .analytics-lab-shell .analytics-section-divider span:last-child {
+    display: none;
+  }
+
+  .analytics-lab-shell .analytics-contrast-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    margin-inline: 0;
+  }
+
+  .analytics-lab-shell .analytics-contrast-arrow {
+    display: none;
+  }
+
+  .analytics-lab-shell .analytics-solution-stage-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    margin-bottom: 1.2rem;
+    padding-inline: 0;
+  }
+
+  .analytics-lab-shell .analytics-step-row {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+    gap: 0.86rem;
+    padding-inline: 0;
+  }
+
+  .analytics-lab-shell .analytics-step-caption {
+    min-height: unset;
+    border-radius: 10px;
+  }
+
+  .analytics-lab-shell .analytics-cta-actions {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .analytics-lab-shell .analytics-solution-flow {
+    padding: 0.35rem 0 0.25rem;
+  }
+
+  .analytics-lab-shell .analytics-step-infographic {
+    gap: 1rem;
+  }
+
+  .analytics-lab-shell .analytics-step-folder-body {
+    padding: 1rem 0.9rem 0.88rem;
+  }
+
+  .analytics-lab-shell .analytics-step-caption {
+    padding: 1rem 0.92rem 0.95rem;
+  }
+}
+
+.analytics-lab-shell #analytics-roi .analytics-deck-card {
+  border-radius: 18px;
+}
+
+.analytics-lab-shell #analytics-roi .analytics-deck-card label {
+  gap: 0.75rem;
+}
+
+@keyframes analytics-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes analytics-folder-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes analytics-progress-glint {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.18);
+  }
+}
+
+.analytics-lab-shell .analytics-bullet-list {
+  font-size: 13px;
+  line-height: 1.62;
+  color: color-mix(in srgb, var(--app-text-2) 90%, #ffffff 10%);
+}
+
+.analytics-lab-shell .analytics-stat-card {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 74%, var(--analytics-accent) 26%) !important;
+  background: color-mix(in srgb, var(--analytics-panel-bg) 88%, #ffffff 12%) !important;
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-block-soft-glow) !important;
+}
+
+.analytics-lab-shell .analytics-stat-card [class*="text-(--app-text)"] {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+
+.analytics-lab-shell .rais-panel-root,
+.analytics-lab-shell .analytics-deck-card,
+.analytics-lab-shell .analytics-inset-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.analytics-lab-shell .rais-panel-root::after,
+.analytics-lab-shell .analytics-deck-card::after,
+.analytics-lab-shell .analytics-inset-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(140px 90px at 88% 8%, color-mix(in srgb, var(--analytics-accent) 18%, transparent), transparent 74%),
+    linear-gradient(125deg, color-mix(in srgb, rgba(255, 255, 255, 0.1) 24%, transparent), transparent 34%);
+  opacity: 0.62;
+  mix-blend-mode: screen;
+}
+
+.analytics-lab-shell .rais-panel-header {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.analytics-lab-shell .analytics-chip {
+  border-radius: 999px;
+  min-height: 32px;
+  padding-inline: 0.9rem;
+}
+
+.analytics-lab-shell .analytics-magnet {
+  position: relative;
+}
+
+.analytics-lab-shell .analytics-magnet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    220px circle at var(--analytics-glow-x) var(--analytics-glow-y),
+    color-mix(in srgb, var(--analytics-accent) 16%, transparent),
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.34s ease;
+}
+
+.analytics-lab-shell .analytics-magnet:hover::before {
+  opacity: 1;
+}
+
+.analytics-lab-shell .rais-panel-body {
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .analytics-lab-shell .rais-panel-body {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .analytics-lab-shell .rais-panel-body {
+    padding: 1.625rem;
+  }
+}
+
+.analytics-lab-shell .key {
+  --analytics-magnet-x: 0px;
+  --analytics-magnet-y: 0px;
+  border-radius: 14px;
+  border-color: color-mix(in srgb, var(--analytics-accent) 36%, var(--analytics-frame-border) 64%);
+  background: var(--app-surface-2);
+  color: var(--app-text);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--analytics-accent) 14%, transparent),
+    var(--analytics-button-glow);
+  transform: translate3d(var(--analytics-magnet-x), var(--analytics-magnet-y), 0);
+  transition:
+    transform 0.26s cubic-bezier(0.18, 0.74, 0.16, 1),
+    box-shadow 0.18s ease,
+    border-color 0.15s ease;
+}
+
+.analytics-lab-shell .key:active {
+  transform: translateY(1px);
+}
+
+.analytics-lab-shell .key.btn--ghost {
+  background: var(--app-surface-3);
+}
+
+.analytics-lab-shell .key.btn--primary {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--analytics-accent) 84%, #ffffff 16%),
+    color-mix(in srgb, var(--analytics-accent-strong) 88%, #090a24 12%)
+  );
+  border-color: color-mix(in srgb, var(--analytics-accent-strong) 74%, var(--analytics-frame-border) 26%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 0 1px color-mix(in srgb, var(--analytics-accent) 32%, transparent),
+    0 12px 34px rgba(127, 86, 255, 0.34);
+}
+
+.analytics-lab-shell .key:hover {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--analytics-accent) 24%, transparent),
+    0 10px 28px rgba(146, 118, 255, 0.34);
+}
+
+.analytics-lab-shell .analytics-key-main {
+  min-height: 48px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.analytics-lab-shell .analytics-key-secondary {
+  min-height: 46px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.analytics-lab-shell .analytics-bar {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--analytics-accent-strong) 72%, var(--analytics-accent) 28%),
+    color-mix(in srgb, var(--analytics-accent) 18%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--analytics-accent-strong) 38%, var(--app-separator) 62%);
+}
+
+/* ROI-скетч: слайдер в одной системе с .analytics-field (рамка/фокус). */
+.analytics-lab-shell .analytics-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  --analytics-range-track-h: 6px;
+  --analytics-range-thumb: 16px;
+}
+
+.analytics-lab-shell .analytics-range:focus-visible {
+  outline: none;
+}
+
+.analytics-lab-shell .analytics-range:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 2px var(--app-surface-3),
+    0 0 0 5px color-mix(in srgb, var(--analytics-accent) 26%, transparent);
+}
+
+.analytics-lab-shell .analytics-range:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 2px var(--app-surface-3),
+    0 0 0 5px color-mix(in srgb, var(--analytics-accent) 26%, transparent);
+}
+
+.analytics-lab-shell .analytics-range::-webkit-slider-runnable-track {
+  height: var(--analytics-range-track-h);
+  border-radius: 999px;
+  border: 1px solid var(--app-separator);
+  background: color-mix(in srgb, var(--app-surface-3) 86%, var(--app-separator) 14%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 68%, transparent);
+}
+
+.analytics-lab-shell .analytics-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--analytics-range-thumb);
+  height: var(--analytics-range-thumb);
+  margin-top: calc((var(--analytics-range-track-h) - var(--analytics-range-thumb)) / 2 - 1px);
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--analytics-frame-border) 55%, var(--analytics-accent) 45%);
+  background: var(--app-surface-3);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--analytics-accent) 20%, rgba(15, 23, 42, 0.12)),
+    var(--analytics-frame-inset-bevel);
+  transition: border-color 0.15s ease, box-shadow 0.18s ease;
+}
+
+.analytics-lab-shell .analytics-range:hover::-webkit-slider-thumb {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 40%, var(--analytics-accent) 60%);
+}
+
+.analytics-lab-shell .analytics-range::-moz-range-track {
+  height: var(--analytics-range-track-h);
+  border-radius: 999px;
+  border: 1px solid var(--app-separator);
+  background: color-mix(in srgb, var(--app-surface-3) 86%, var(--app-separator) 14%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 68%, transparent);
+}
+
+.analytics-lab-shell .analytics-range::-moz-range-thumb {
+  width: var(--analytics-range-thumb);
+  height: var(--analytics-range-thumb);
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--analytics-frame-border) 55%, var(--analytics-accent) 45%);
+  background: var(--app-surface-3);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--analytics-accent) 20%, rgba(15, 23, 42, 0.12)),
+    var(--analytics-frame-inset-bevel);
+  transition: border-color 0.15s ease, box-shadow 0.18s ease;
+}
+
+.analytics-lab-shell .analytics-range:hover::-moz-range-thumb {
+  border-color: color-mix(in srgb, var(--analytics-frame-border) 40%, var(--analytics-accent) 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .analytics-lab-shell .rais-panel-root,
+  .analytics-lab-shell .analytics-deck-card,
+  .analytics-lab-shell .analytics-inset-frame,
+  .analytics-lab-shell .analytics-field,
+  .analytics-lab-shell .analytics-chip,
+  .analytics-lab-shell .key,
+  .analytics-lab-shell .analytics-step-row,
+  .analytics-lab-shell .analytics-step-folder,
+  .analytics-lab-shell .analytics-step-progress-fill {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .analytics-lab-shell .analytics-magnet::before {
+    opacity: 0 !important;
+    transition: none !important;
+  }
+
+  .analytics-lab-shell .analytics-range::-webkit-slider-thumb,
+  .analytics-lab-shell .analytics-range::-moz-range-thumb {
+    transition: none !important;
+  }
+
+  .analytics-lab-shell .key:active {
+    transform: none;
+  }
+}
+
+html.dark .analytics-lab-shell .rais-panel-root {
+  background: var(--analytics-panel-bg);
+  border-color: rgba(255, 255, 255, 0.18);
+  border-left-color: var(--analytics-frame-accent);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel);
+}
+
+html.dark .analytics-lab-shell .rais-microzone-shell-header [class*="text-(--app-fg-subtle)"] {
+  color: color-mix(in srgb, #d8cbff 74%, var(--app-text-3) 26%) !important;
+}
+
+html.dark .analytics-lab-shell .rais-microzone-title-main {
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.34);
+}
+
+html.dark .analytics-lab-shell .rais-microzone-title-subtitle {
+  color: color-mix(in srgb, #d7c8ff 78%, var(--app-text-2) 22%) !important;
+}
+
+html.dark .analytics-lab-shell .rais-microzone-description {
+  color: color-mix(in srgb, var(--app-text-2) 90%, #ffffff 10%);
+}
+
+html.dark .analytics-lab-shell .rais-panel-root:hover {
+  border-color: color-mix(in srgb, rgba(255, 255, 255, 0.12) 55%, var(--analytics-accent) 45%);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-frame-hover-glow);
+}
+
+html.dark .analytics-lab-shell .rais-panel-header {
+  background: var(--analytics-header-bg);
+  border-bottom-color: var(--app-separator);
+}
+
+html.dark .analytics-lab-shell .analytics-deck-card {
+  background: var(--analytics-deck-bg);
+  border-color: rgba(255, 255, 255, 0.18);
+  border-left-color: var(--analytics-frame-accent);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel);
+}
+
+html.dark .analytics-lab-shell .analytics-deck-card:hover {
+  border-color: color-mix(in srgb, rgba(255, 255, 255, 0.12) 55%, var(--analytics-accent) 45%);
+  box-shadow: var(--analytics-frame-shadow), var(--analytics-frame-inset-bevel), var(--analytics-frame-hover-glow);
+}
+
+html.dark .analytics-lab-shell .analytics-inset-frame {
+  background: var(--analytics-inset-bg);
+  border-color: rgba(255, 255, 255, 0.16);
+  border-left-color: color-mix(in srgb, var(--analytics-frame-accent) 70%, transparent);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), var(--analytics-frame-inset-bevel);
+}
+
+html.dark .analytics-lab-shell .analytics-metric-badge {
+  border-color: var(--app-separator);
+  background: var(--app-surface-3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.dark .analytics-lab-shell .analytics-bar {
+  background: linear-gradient(180deg, color-mix(in srgb, #c4b5fd 70%, #8b5cf6 30%), transparent);
+  border-color: rgba(196, 181, 253, 0.55);
+}
+
+html.dark .analytics-lab-shell .analytics-range::-webkit-slider-runnable-track {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.dark .analytics-lab-shell .analytics-range::-moz-range-track {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.dark .analytics-lab-shell .analytics-chip {
+  border-color: rgba(196, 181, 253, 0.38);
+  background: var(--analytics-chip-bg);
+  color: #f1e9ff;
+}
+
+html.dark .analytics-lab-shell .analytics-chip:hover {
+  border-color: color-mix(in srgb, rgba(196, 181, 253, 0.42) 55%, var(--analytics-accent) 45%);
+  background: color-mix(in srgb, var(--analytics-chip-bg) 75%, rgba(255, 255, 255, 0.06) 25%);
+}
+
+html.dark .analytics-lab-shell .analytics-kicker {
+  color: rgba(224, 200, 255, 0.9);
+}
+
+html.dark .analytics-lab-shell .key.btn--ghost {
+  background: var(--app-surface-2);
+}
+
+html.dark .analytics-lab-shell .key.btn--primary {
+  background: color-mix(in srgb, #8b5cf6 74%, #1f1238 26%);
+  border-color: color-mix(in srgb, #c4b5fd 48%, rgba(255, 255, 255, 0.2) 52%);
+  color: #f8f5ff;
+}
+
+/* Dark scope hardening for RAIS pages with legacy utility classes. */
+html.dark .rais-dark-scope [class*="text-black/35"],
+html.dark .rais-dark-scope [class*="text-black/40"],
+html.dark .rais-dark-scope [class*="text-black/45"] {
+  color: var(--app-text-disabled) !important;
+}
+
+html.dark .rais-dark-scope [class*="text-black/50"],
+html.dark .rais-dark-scope [class*="text-black/55"],
+html.dark .rais-dark-scope [class*="text-black/60"] {
+  color: var(--app-text-3) !important;
+}
+
+html.dark .rais-dark-scope [class*="text-black/65"],
+html.dark .rais-dark-scope [class*="text-black/70"],
+html.dark .rais-dark-scope [class*="text-black/75"],
+html.dark .rais-dark-scope [class*="text-black/80"],
+html.dark .rais-dark-scope [class*="text-black/85"] {
+  color: var(--app-text-2) !important;
+}
+
+html.dark .rais-dark-scope [class*="text-black/90"],
+html.dark .rais-dark-scope [class*="text-black"],
+html.dark .rais-dark-scope [class*="text-black "] {
+  color: var(--app-text) !important;
+}
+
+html.dark .rais-dark-scope [class*="focus-visible:ring-black/20"] {
+  --tw-ring-color: var(--app-focus) !important;
+}
+
+/* RAIS (solve и др.): выбранные toggle keycaps — заметнее на тёмном фоне */
+html.dark .rais-dark-scope .key.btn--primary {
+  border-color: color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 40%, var(--btn-border));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 26%, rgba(255, 250, 245, 0.03)),
+    color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 14%, var(--btn-bg))
+  );
+  box-shadow:
+    0 4px 0 color-mix(in srgb, var(--btn-primary-dim) 55%, var(--btn-edge)),
+    0 0 0 1px color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 44%, transparent),
+    0 10px 26px color-mix(in srgb, var(--exita-accent, var(--accent-indigo)) 22%, transparent),
+    inset 1px 1px 3px rgba(255, 250, 245, 0.1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.28);
+}
+
+html.dark .rais-dark-scope .key.btn--primary:hover {
+  filter: brightness(1.06);
+}
+
+/* RAIS /solve: полоса прокрутки предпросмотра — без «белого» системного скролла в тёмной теме */
+html.dark .rais-dark-scope textarea.solve-preview-textarea {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--rais-border) 80%, transparent) color-mix(in srgb, var(--background) 65%, rgba(10, 8, 6, 0.55));
+}
+
+html.dark .rais-dark-scope textarea.solve-preview-textarea::-webkit-scrollbar {
+  width: 9px;
+}
+
+html.dark .rais-dark-scope textarea.solve-preview-textarea::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--background) 78%, transparent);
+  border-radius: 999px;
+}
+
+html.dark .rais-dark-scope textarea.solve-preview-textarea::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--rais-border) 82%, rgba(255, 240, 220, 0.08));
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--background) 72%, transparent);
+}
+
+html.dark .rais-dark-scope textarea.solve-preview-textarea::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--rais-border) 92%, rgba(255, 240, 220, 0.12));
+}
+/* Redaktorsha dark theme: custom midnight document lab. */
+html.dark .redaktorsha-lab-shell {
+  --doclab-ink: #f7f3ee;
+  --doclab-subtle: rgba(247, 243, 238, 0.8);
+  --doclab-hairline: rgba(255, 237, 212, 0.13);
+  --doclab-border: rgba(255, 233, 205, 0.18);
+  --doclab-border-strong: rgba(255, 233, 205, 0.28);
+  --doclab-toplight: rgba(255, 247, 233, 0.14);
+  --doclab-lowlight: rgba(0, 0, 0, 0.3);
+  --doclab-depth: rgba(0, 0, 0, 0.42);
+  --doclab-neon: color-mix(in srgb, #9a82eb 52%, #5f4bd6 48%);
+  --exita-accent: color-mix(in srgb, #947be6 54%, #5d47d1 46%);
+  --exita-ambient: color-mix(in srgb, #7a63d8 24%, transparent);
+  --app-bg: #0f0d13;
+  --app-text: #f2ece6;
+  --app-text-2: rgba(242, 236, 230, 0.88);
+  --app-text-3: rgba(242, 236, 230, 0.72);
+  --app-text-disabled: rgba(242, 236, 230, 0.56);
+  --app-text-inverse: #1a1527;
+  --app-fg: var(--doclab-ink);
+  --app-fg-muted: var(--doclab-subtle);
+  --app-fg-subtle: rgba(247, 243, 238, 0.58);
+  --app-surface-2: rgba(44, 36, 32, 0.88);
+  --app-surface-3: rgba(53, 43, 38, 0.92);
+  --app-surface-inset: rgba(37, 30, 27, 0.84);
+  --app-separator-subtle: rgba(214, 188, 255, 0.09);
+  --app-separator: rgba(222, 196, 255, 0.14);
+  --app-separator-strong: rgba(228, 204, 255, 0.22);
+  --app-stroke: rgba(222, 196, 255, 0.17);
+  --app-stroke-strong: rgba(228, 204, 255, 0.26);
+  --app-surface: linear-gradient(180deg, rgba(44, 36, 31, 0.92), rgba(32, 26, 23, 0.9));
+  --app-surface-strong: linear-gradient(180deg, rgba(52, 43, 37, 0.92), rgba(38, 32, 28, 0.9));
+  --app-border: var(--doclab-border);
+  --app-border-strong: var(--doclab-border-strong);
+  --app-focus: color-mix(in srgb, var(--doclab-neon) 48%, rgba(255, 247, 233, 0.2));
+  --btn-bg: rgba(50, 42, 37, 0.94);
+  --btn-fg: rgba(247, 243, 238, 0.92);
+  --btn-border: color-mix(in srgb, var(--doclab-border) 70%, var(--doclab-neon) 30%);
+  --btn-edge: rgba(255, 237, 212, 0.11);
+  --btn-primary: color-mix(in srgb, #947ce0 62%, #5442bb 38%);
+  --btn-primary-dim: color-mix(in srgb, #7964cb 58%, #352776 42%);
+  --keycap-hi: rgba(255, 247, 233, 0.09);
+  --keycap-mid: rgba(255, 247, 233, 0.04);
+}
+
+html.dark .redaktorsha-lab-shell .rais-panel-root {
+  background: linear-gradient(180deg, rgba(51, 42, 36, 0.94), rgba(36, 30, 26, 0.92));
+  box-shadow:
+    0 24px 52px rgba(0, 0, 0, 0.44),
+    0 10px 20px rgba(0, 0, 0, 0.24),
+    0 1px 0 var(--doclab-toplight) inset,
+    0 -1px 0 var(--doclab-lowlight) inset;
+}
+
+html.dark .redaktorsha-lab-shell .rais-panel-root::after {
+  background: linear-gradient(180deg, rgba(255, 247, 233, 0.08), transparent 28%);
+  opacity: 0.55;
+}
+
+html.dark .redaktorsha-lab-shell .rais-panel-header {
+  background: linear-gradient(180deg, rgba(72, 59, 50, 0.62), rgba(56, 46, 40, 0.36));
+}
+
+html.dark .redaktorsha-lab-shell .rais-panel-title {
+  color: var(--app-text-2);
+}
+
+html.dark .redaktorsha-lab-shell .rais-panel-body {
+  color: var(--app-text-2);
+  line-height: 1.66;
+}
+
+html.dark .redaktorsha-lab-shell .doclab-panel-accent::before {
+  background:
+    radial-gradient(560px 180px at 12% 0%, color-mix(in srgb, var(--doclab-neon) 16%, transparent), transparent 72%),
+    linear-gradient(90deg, color-mix(in srgb, #5d47d7 14%, transparent), transparent 32%);
+  opacity: 0.34;
+}
+
+html.dark .redaktorsha-lab-shell .doclab-neon-edge {
+  border-color: color-mix(in srgb, var(--doclab-neon) 30%, rgba(255, 233, 205, 0.2));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 16%, transparent) inset,
+    0 1px 0 var(--doclab-toplight) inset,
+    0 -1px 0 var(--doclab-lowlight) inset,
+    0 14px 26px rgba(0, 0, 0, 0.34);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-kicker {
+  color: color-mix(in srgb, var(--app-text-3) 85%, #c3a9ff 15%);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-volume-surface,
+html.dark .redaktorsha-lab-shell .doclab-surface-inline {
+  background:
+    linear-gradient(180deg, rgba(58, 48, 42, 0.92), rgba(42, 35, 31, 0.9)),
+    color-mix(in srgb, #3e312a 70%, transparent);
+  border-color: color-mix(in srgb, var(--doclab-neon) 18%, rgba(255, 233, 205, 0.2));
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.34),
+    0 1px 0 rgba(255, 247, 233, 0.14) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.26) inset;
+}
+
+html.dark .redaktorsha-lab-shell .doclab-neon-btn {
+  background: linear-gradient(
+    102deg,
+    color-mix(in srgb, #4b3ca7 76%, #1a142f 24%),
+    color-mix(in srgb, #5d47be 74%, #1a142f 26%),
+    color-mix(in srgb, #6f56cf 70%, #1d1733 30%)
+  );
+  box-shadow:
+    0 18px 30px rgba(7, 5, 18, 0.5),
+    0 8px 14px rgba(12, 10, 24, 0.3),
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 32%, transparent) inset,
+    0 1px 0 rgba(255, 247, 233, 0.24) inset;
+}
+
+html.dark .redaktorsha-lab-shell .doclab-neon-btn::after {
+  background: linear-gradient(120deg, transparent 32%, rgba(255, 247, 233, 0.16) 50%, transparent 68%);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-neon-btn:hover {
+  box-shadow:
+    0 20px 34px rgba(7, 5, 18, 0.52),
+    0 9px 16px rgba(12, 10, 24, 0.32),
+    0 0 0 1px color-mix(in srgb, var(--doclab-neon) 35%, transparent) inset,
+    0 1px 0 rgba(255, 247, 233, 0.26) inset;
+}
+
+html.dark .redaktorsha-lab-shell .doclab-key-main.btn--primary {
+  color: #f8f2ff;
+  border-color: color-mix(in srgb, #b590ff 58%, var(--btn-border) 42%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #a076ff 70%, #31205f 30%),
+    color-mix(in srgb, #7e58dc 68%, #251a49 32%)
+  );
+  box-shadow:
+    0 7px 0 color-mix(in srgb, #4b3390 72%, #1d1637 28%),
+    0 16px 30px rgba(34, 18, 74, 0.48),
+    0 0 0 1px color-mix(in srgb, #be9bff 24%, transparent) inset,
+    0 0 22px color-mix(in srgb, #8f63f0 30%, transparent);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-key-main.btn--primary:hover {
+  border-color: color-mix(in srgb, #c5a7ff 62%, var(--btn-border) 38%);
+  box-shadow:
+    0 7px 0 color-mix(in srgb, #4f3698 74%, #1d1637 26%),
+    0 18px 34px rgba(36, 19, 80, 0.54),
+    0 0 0 1px color-mix(in srgb, #c3a3ff 30%, transparent) inset,
+    0 0 26px color-mix(in srgb, #9f75ff 36%, transparent);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-key-main.btn--primary:active {
+  box-shadow:
+    0 4px 0 color-mix(in srgb, #463080 70%, #1b1531 30%),
+    0 10px 20px rgba(29, 16, 66, 0.5),
+    0 0 0 1px color-mix(in srgb, #b894ff 24%, transparent) inset,
+    0 0 16px color-mix(in srgb, #8f63f0 26%, transparent);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-matrix-row:nth-child(even) {
+  background: rgba(255, 242, 222, 0.03);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-matrix-row:hover {
+  background: rgba(255, 242, 222, 0.06);
+}
+
+html.dark .redaktorsha-lab-shell .doclab-matrix-head {
+  background: linear-gradient(180deg, rgba(73, 61, 52, 0.86), rgba(55, 46, 40, 0.8));
+}
+
+html.dark .redaktorsha-lab-shell .rais-tag {
+  border-color: color-mix(in srgb, var(--app-stroke) 82%, #9b79f1 18%);
+  color: var(--app-text-2);
+}
+
+html.dark .redaktorsha-lab-shell .rais-tag:hover {
+  border-color: color-mix(in srgb, var(--app-stroke-strong) 76%, #a885ff 24%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--exita-accent) 14%, transparent) inset;
+}
+
+html.dark .redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn),
+html.dark .redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full) {
+  background-image: linear-gradient(180deg, rgba(66, 54, 46, 0.82), rgba(50, 41, 36, 0.72));
+  box-shadow:
+    0 8px 14px rgba(0, 0, 0, 0.22),
+    0 1px 0 rgba(255, 247, 233, 0.16) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.22) inset;
+}
+
+html.dark .redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn):hover,
+html.dark .redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full):hover {
+  box-shadow:
+    0 10px 16px rgba(0, 0, 0, 0.24),
+    0 1px 0 rgba(255, 247, 233, 0.18) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.24) inset;
+}
+
+html.dark .redaktorsha-lab-shell button:not(.key):not(.doclab-neon-btn):active,
+html.dark .redaktorsha-lab-shell a:not(.key):not(.doclab-neon-btn):is(.inline-flex, .rounded-full):active {
+  box-shadow:
+    0 6px 10px rgba(0, 0, 0, 0.24),
+    0 1px 0 rgba(255, 247, 233, 0.13) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.24) inset;
+}
+
+html.dark .redaktorsha-lab-shell [class*="text-black/35"],
+html.dark .redaktorsha-lab-shell [class*="text-black/40"],
+html.dark .redaktorsha-lab-shell [class*="text-black/45"] {
+  color: var(--app-text-disabled) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="text-black/50"],
+html.dark .redaktorsha-lab-shell [class*="text-black/55"],
+html.dark .redaktorsha-lab-shell [class*="text-black/60"] {
+  color: var(--app-text-3) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="text-black/65"],
+html.dark .redaktorsha-lab-shell [class*="text-black/70"],
+html.dark .redaktorsha-lab-shell [class*="text-black/75"],
+html.dark .redaktorsha-lab-shell [class*="text-black/80"],
+html.dark .redaktorsha-lab-shell [class*="text-black/85"] {
+  color: var(--app-text-2) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="text-black/90"],
+html.dark .redaktorsha-lab-shell [class*="text-black"] {
+  color: var(--app-text) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="bg-white/"],
+html.dark .redaktorsha-lab-shell [class*="bg-white "] {
+  background-color: var(--app-surface-2) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="bg-black/"] {
+  background-color: color-mix(in srgb, var(--app-surface-inset) 82%, transparent) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="border-black/"] {
+  border-color: var(--app-separator) !important;
+}
+
+html.dark .redaktorsha-lab-shell [class*="focus-visible:ring-black/20"],
+html.dark .redaktorsha-lab-shell [class*="focus-visible:ring-black/15"] {
+  --tw-ring-color: var(--app-focus) !important;
+}
+
+/* Консьерж: согласованная палитра (индиго → фиолет, бирюза + тёплый янтарь на --rais-bg).
+   Без background-position / multiply / blur+rotate (полосы в Chrome). Движение — opacity. */
+.concierge-atmosphere {
+  /* Токены сцены: холодные спектры + янтарь (без розового) */
+  --cx-indigo: #4f46e5;
+  --cx-violet: #6d28d9;
+  --cx-orchid: #a855f7;
+  --cx-teal: #0d9488;
+  --cx-sky: #0284c7;
+  --cx-peri: #6366f1;
+  position: relative;
+  background-color: var(--rais-bg);
+  background-image:
+    radial-gradient(ellipse 100% 78% at 4% 6%, color-mix(in srgb, var(--cx-indigo) 50%, transparent), transparent 64%),
+    radial-gradient(ellipse 95% 85% at 100% 8%, color-mix(in srgb, var(--cx-violet) 42%, transparent), transparent 62%),
+    radial-gradient(ellipse 75% 65% at 8% 95%, color-mix(in srgb, var(--cx-teal) 38%, transparent), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 95% 90%, color-mix(in srgb, var(--cx-sky) 28%, transparent), transparent 58%),
+    radial-gradient(ellipse 55% 50% at 50% 45%, color-mix(in srgb, var(--cx-orchid) 26%, transparent), transparent 56%),
+    linear-gradient(
+      142deg,
+      color-mix(in srgb, #c7d2fe 9%, var(--rais-bg) 91%) 0%,
+      color-mix(in srgb, #e9d5ff 8%, var(--rais-bg) 92%) 24%,
+      color-mix(in srgb, #e0e7ff 7.5%, var(--rais-bg) 92.5%) 48%,
+      color-mix(in srgb, #ccfbf1 6.5%, var(--rais-bg) 93.5%) 72%,
+      color-mix(in srgb, #fef3c7 5.5%, var(--rais-bg) 94.5%) 100%
+    );
+  /* Все слои 100% — нет субпиксельного сдвига, который даёт полосы. */
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  isolation: isolate;
+}
+
+/* Только opacity (без blur/rotate/сдвига background) — без полос от композита. */
+.concierge-atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 200deg,
+    color-mix(in srgb, var(--cx-peri) 36%, transparent),
+    color-mix(in srgb, var(--cx-violet) 34%, transparent),
+    color-mix(in srgb, var(--cx-orchid) 32%, transparent),
+    color-mix(in srgb, #5b21b6 30%, transparent),
+    color-mix(in srgb, #2563eb 28%, transparent),
+    color-mix(in srgb, var(--cx-teal) 28%, transparent),
+    color-mix(in srgb, var(--cx-peri) 36%, transparent)
+  );
+  opacity: 0.42;
+  animation: concierge-atmosphere-orb 40s ease-in-out infinite;
+}
+
+.concierge-atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 22% 32%, color-mix(in srgb, #4338ca 24%, transparent), transparent 60%),
+    radial-gradient(ellipse 85% 75% at 78% 72%, color-mix(in srgb, #86198f 20%, transparent), transparent 58%);
+  /* Без mix-blend-mode: движущийся multiply даёт бэнды поверх низа. */
+  opacity: 0.58;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concierge-atmosphere::before {
+    animation: none;
+    opacity: 0.44;
+  }
+}
+
+@keyframes concierge-atmosphere-orb {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.48;
+  }
+}
